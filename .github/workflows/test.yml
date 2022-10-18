@@ -1,0 +1,23 @@
+name: Test
+
+on: [ push ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        php-version: [ 8.1 ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "${{ matrix.php-version }}"
+
+      - name: Run phpunit tests
+        uses: php-actions/phpunit@v3
+        with:
+          configuration: phpunit.xml
