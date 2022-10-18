@@ -17,8 +17,12 @@ jobs:
         with:
           php_version: "${{ matrix.php-version }}"
 
+      - run: echo $PWD
+      - run: ls -latr
+
       - name: Run phpunit tests
         uses: php-actions/phpunit@v3
         with:
+          bootstrap: vendor/autoload.php
           php_version: "${{ matrix.php-version }}"
           configuration: phpunit.xml
