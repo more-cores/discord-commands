@@ -29,12 +29,12 @@ class StringSelectMenu extends SelectMenu
     {
         foreach ($this->options as $option) {
             $option->setDefault(
-                $optionLabel === $option->getLabel()
+                $optionLabel === $option->label()
             );
         }
     }
 
-    public function getOptions(): array
+    public function options(): array
     {
         return $this->options;
     }

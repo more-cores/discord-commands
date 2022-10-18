@@ -14,15 +14,15 @@ class OptionTest extends TestCase
         $value = 'some-value';
         $option = new Option($label, $value);
 
-        $this->assertEquals($label, $option->getLabel());
-        $this->assertEquals($value, $option->getValue());
+        $this->assertEquals($label, $option->label());
+        $this->assertEquals($value, $option->value());
 
         $json = $option->jsonSerialize();
 
         $this->assertArrayHasKey('label', $json);
-        $this->assertEquals($option->getLabel(), $json['label']);
+        $this->assertEquals($option->label(), $json['label']);
 
         $this->assertArrayHasKey('value', $json);
-        $this->assertEquals($option->getValue(), $json['value']);
+        $this->assertEquals($option->value(), $json['value']);
     }
 }

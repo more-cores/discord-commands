@@ -27,12 +27,12 @@ class SelectMenu extends Component
         $this->maxValues = $maxValues;
     }
 
-    public function getId(): string
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function getPlaceholder(): ?string
+    public function placeholder(): ?string
     {
         return $this->placeholder;
     }
@@ -42,7 +42,7 @@ class SelectMenu extends Component
         $this->placeholder = $placeholder;
     }
 
-    public function getMinValues(): ?int
+    public function minValues(): ?int
     {
         return $this->minValues;
     }
@@ -52,7 +52,7 @@ class SelectMenu extends Component
         $this->minValues = $minValues;
     }
 
-    public function getMaxValues(): ?int
+    public function maxValues(): ?int
     {
         return $this->maxValues;
     }
@@ -80,10 +80,10 @@ class SelectMenu extends Component
     public function jsonSerialize(): array
     {
         $data = [
-            'custom_id' => $this->getId(),
-            'placeholder' => $this->getPlaceholder(),
-            'min_values' => $this->getMinValues(),
-            'max_values' => $this->getMaxValues(),
+            'custom_id' => $this->id(),
+            'placeholder' => $this->placeholder(),
+            'min_values' => $this->minValues(),
+            'max_values' => $this->maxValues(),
             'disabled' => $this->isDisabled(),
         ];
 

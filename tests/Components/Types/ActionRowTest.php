@@ -19,22 +19,22 @@ class ActionRowTest extends TestCase
     /** @test */
     public function canAddAndProvideComponents()
     {
-        $this->assertCount(0, $this->actionRow->getComponents());
+        $this->assertCount(0, $this->actionRow->components());
 
         $component = \Mockery::mock(Component::class);
         $this->actionRow->addComponent($component);
-        $this->assertCount(1, $this->actionRow->getComponents());
-        $this->assertEquals($component, $this->actionRow->getComponents()[0]);
+        $this->assertCount(1, $this->actionRow->components());
+        $this->assertEquals($component, $this->actionRow->components()[0]);
 
         $componentB = new class(time()) extends Component {
 
         };
         $this->actionRow->setComponents([$componentB]);
-        $this->assertCount(1, $this->actionRow->getComponents());
-        $this->assertEquals($componentB, $this->actionRow->getComponents()[0]);
+        $this->assertCount(1, $this->actionRow->components());
+        $this->assertEquals($componentB, $this->actionRow->components()[0]);
 
         $json = $this->actionRow->jsonSerialize();
         $this->assertArrayHasKey('components', $json);
-        $this->assertEquals($componentB->getType(), $json['components'][0]['type']);
+        $this->assertEquals($componentB->type(), $json['components'][0]['type']);
     }
 }

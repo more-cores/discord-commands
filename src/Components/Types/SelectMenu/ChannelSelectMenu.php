@@ -26,7 +26,7 @@ class ChannelSelectMenu extends SelectMenu
         return count($this->channelTypes) > 0;
     }
 
-    public function getChannelTypes(): array
+    public function channelTypes(): array
     {
         return $this->channelTypes;
     }

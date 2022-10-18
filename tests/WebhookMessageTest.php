@@ -41,7 +41,7 @@ class WebhookMessageTest extends TestCase
         $this->assertEquals([
             $firstRoleId,
             $secondRoleId,
-        ], $this->message->getMentionedRoleIds());
+        ], $this->message->mentionedRoleIds());
     }
 
     /** @test */

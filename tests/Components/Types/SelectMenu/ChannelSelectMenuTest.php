@@ -18,13 +18,13 @@ class ChannelSelectMenuTest extends TestCase
             ],
         );
 
-        $this->assertEquals($id, $selectMenu->getId());
-        $this->assertEquals(Channel::TYPE_GUILD_TEXT, $selectMenu->getChannelTypes()[0]);
+        $this->assertEquals($id, $selectMenu->id());
+        $this->assertEquals(Channel::TYPE_GUILD_TEXT, $selectMenu->channelTypes()[0]);
 
         $json = $selectMenu->jsonSerialize();
 
         $this->assertArrayHasKey('custom_id', $json);
-        $this->assertEquals($selectMenu->getId(), $json['custom_id']);
+        $this->assertEquals($selectMenu->id(), $json['custom_id']);
 
         $this->assertArrayHasKey('channel_types', $json);
         $this->assertTrue(in_array(Channel::TYPE_GUILD_TEXT, $json['channel_types']));
@@ -38,12 +38,12 @@ class ChannelSelectMenuTest extends TestCase
             id: $id,
         );
 
-        $this->assertEquals($id, $selectMenu->getId());
+        $this->assertEquals($id, $selectMenu->id());
 
         $json = $selectMenu->jsonSerialize();
 
         $this->assertArrayHasKey('custom_id', $json);
-        $this->assertEquals($selectMenu->getId(), $json['custom_id']);
+        $this->assertEquals($selectMenu->id(), $json['custom_id']);
 
         $this->assertArrayNotHasKey('channel_types', $json);
     }

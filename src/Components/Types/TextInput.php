@@ -35,12 +35,12 @@ class TextInput extends Component
         $this->placeholder = $placeholder;
     }
 
-    public function getId(): string
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function getStyle(): int
+    public function style(): int
     {
         return $this->style;
     }

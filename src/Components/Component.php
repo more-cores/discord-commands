@@ -10,7 +10,7 @@ class Component extends Jsonable
         protected int $type
     ) { }
 
-    public function getType(): int
+    public function type(): int
     {
         return $this->type;
     }
@@ -18,7 +18,7 @@ class Component extends Jsonable
     public function jsonSerialize(): array
     {
         return [
-            'type' => $this->getType(),
+            'type' => $this->type(),
         ];
     }
 }

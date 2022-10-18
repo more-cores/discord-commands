@@ -52,7 +52,7 @@ class Message extends Jsonable implements Hydrateable
         return preg_match('#<@&.+?>#', $this->content());
     }
 
-    public function getMentionedRoleIds(): ?array
+    public function mentionedRoleIds(): ?array
     {
         preg_match_all('#<@&(.+?)>#', $this->content(), $matches);
 
