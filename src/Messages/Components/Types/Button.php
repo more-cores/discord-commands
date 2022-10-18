@@ -3,7 +3,7 @@
 namespace DiscordBuilder\Messages\Components\Types;
 
 use DiscordBuilder\Messages\Components\Component;
-use DiscordBuilder\Messages\PartialEmoji;
+use DiscordBuilder\PartialEmoji;
 
 class Button extends Component
 {
