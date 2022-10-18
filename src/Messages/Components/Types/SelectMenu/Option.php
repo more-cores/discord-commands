@@ -2,7 +2,7 @@
 
 namespace DiscordBuilder\Messages\Components\Types\SelectMenu;
 
-use DiscordBuilder\Messages\PartialEmoji;
+use DiscordBuilder\PartialEmoji;
 
 class Option
 {
