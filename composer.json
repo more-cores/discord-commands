@@ -1,0 +1,33 @@
+{
+  "name": "more-cores/discord-builder",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/more-cores/discord-builder",
+  "authors": [
+    {
+      "name": "Ben Kuhl",
+      "email": "ben@morecores.games"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/more-cores/discord-builder/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "DiscordBuilder\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.1"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.0",
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests"
+    ]
+  },
+  "minimum-stability": "stable"
+}
