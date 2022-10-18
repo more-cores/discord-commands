@@ -22,22 +22,22 @@ class Option
         $this->default = $default;
     }
 
-    public function setLabel(string $label)
+    public function setLabel(string $label): void
     {
         $this->label = $label;
     }
 
-    public function getLabel(): string
+    public function label(): string
     {
         return $this->label;
     }
 
-    public function setValue(string $value)
+    public function setValue(string $value): void
     {
         $this->value = $value;
     }
 
-    public function getValue(): string
+    public function value(): string
     {
         return $this->value;
     }
@@ -47,7 +47,7 @@ class Option
         $this->description = $description;
     }
 
-    public function getDescription(): string
+    public function description(): string
     {
         return $this->description;
     }
@@ -70,13 +70,13 @@ class Option
     public function jsonSerialize(): array
     {
         $data = [
-            'label' => $this->getLabel(),
-            'value' => $this->getValue(),
+            'label' => $this->label(),
+            'value' => $this->value(),
             'default' => $this->isDefault(),
         ];
 
         if ($this->hasDescription()) {
-            $data['description'] = $this->getDescription();
+            $data['description'] = $this->description();
         }
 
         if ($this->emoji instanceof PartialEmoji) {

@@ -14,7 +14,7 @@ class ParagraphInputTest extends TestCase
         $label = 'my-field';
         $input = new ParagraphInput($id, $label);
 
-        $this->assertEquals(2, $input->getStyle());
+        $this->assertEquals(2, $input->style());
         $this->assertEquals($label, $input->label());
 
         $json = $input->jsonSerialize();

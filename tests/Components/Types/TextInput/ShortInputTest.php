@@ -14,7 +14,7 @@ class ShortInputTest extends TestCase
         $label = 'my-field';
         $input = new ShortInput($id, $label);
 
-        $this->assertEquals(1, $input->getStyle());
+        $this->assertEquals(1, $input->style());
         $this->assertEquals($label, $input->label());
 
         $json = $input->jsonSerialize();

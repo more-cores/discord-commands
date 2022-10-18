@@ -18,17 +18,17 @@ class StringSelectMenuTest extends TestCase
             options: [$option1]
         );
 
-        $this->assertEquals($id, $selectMenu->getId());
-        $this->assertEquals($option1, $selectMenu->getOptions()[0]);
+        $this->assertEquals($id, $selectMenu->id());
+        $this->assertEquals($option1, $selectMenu->options()[0]);
 
         $json = $selectMenu->jsonSerialize();
 
         $this->assertArrayHasKey('custom_id', $json);
-        $this->assertEquals($selectMenu->getId(), $json['custom_id']);
+        $this->assertEquals($selectMenu->id(), $json['custom_id']);
 
         $this->assertArrayHasKey('options', $json);
-        $this->assertEquals($option1->getLabel(), $json['options'][0]['label']);
-        $this->assertEquals($option1->getValue(), $json['options'][0]['value']);
+        $this->assertEquals($option1->label(), $json['options'][0]['label']);
+        $this->assertEquals($option1->value(), $json['options'][0]['value']);
     }
 
     /** @test */
@@ -42,10 +42,10 @@ class StringSelectMenuTest extends TestCase
             options: [$option1],
         );
 
-        $this->assertFalse($selectMenu->getOptions()[0]->isDefault());
+        $this->assertFalse($selectMenu->options()[0]->isDefault());
 
-        $selectMenu->makeDefault($option1->getLabel());
+        $selectMenu->makeDefault($option1->label());
 
-        $this->assertTrue($selectMenu->getOptions()[0]->isDefault());
+        $this->assertTrue($selectMenu->options()[0]->isDefault());
     }
 }

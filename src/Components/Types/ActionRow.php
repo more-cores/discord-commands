@@ -24,7 +24,7 @@ class ActionRow extends Component
     /**
      * @return Component[]
      */
-    public function getComponents(): array
+    public function components(): array
     {
         return $this->components;
     }
