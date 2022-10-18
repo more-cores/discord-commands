@@ -17,9 +17,6 @@ jobs:
         with:
           php_version: "${{ matrix.php-version }}"
 
-      - run: echo $PWD
-      - run: ls -latr
-
       - name: Run phpunit tests
         uses: php-actions/phpunit@v3
         with:
