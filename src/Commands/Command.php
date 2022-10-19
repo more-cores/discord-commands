@@ -1,13 +1,14 @@
 <?php
 
-namespace DiscordBuilder;
+namespace DiscordBuilder\Commands;
+
+use DiscordBuilder\Jsonable;
 
 class Command extends Jsonable
 {
     public const PERMISSION_DISABLE_FOR_NON_ADMINS = 0;
 
     protected ?string $applicationId = null;
-    protected ?string $guildId = null;
     protected string $name = '';
     protected string $description = '';
     protected ?string $defaultMemberPermissions = null;
@@ -17,7 +18,6 @@ class Command extends Jsonable
     public function __construct(
         protected int $type,
         ?string $applicationId = null,
-        ?string $guildId = null,
         string $name = '',
         string $description = '',
         ?bool $dmPermission = null,
@@ -26,11 +26,15 @@ class Command extends Jsonable
     ) {
         $this->description = $description;
         $this->applicationId = $applicationId;
-        $this->guildId = $guildId;
         $this->name = $name;
         $this->defaultMemberPermissions = $defaultMemberPermissions;
         $this->dmPermission = $dmPermission;
         $this->version = $version;
+    }
+
+    public function type(): int
+    {
+        return $this->type;
     }
 
     public function applicationId(): string
@@ -46,21 +50,6 @@ class Command extends Jsonable
     public function hasApplicationId(): bool
     {
         return $this->applicationId !== null;
-    }
-
-    public function guildId(): string
-    {
-        return $this->guildId;
-    }
-
-    public function setGuildId(?string $guildId = null): void
-    {
-        $this->guildId = $guildId;
-    }
-
-    public function hasGuildId(): bool
-    {
-        return $this->guildId !== null;
     }
 
     public function name(): string
@@ -138,14 +127,40 @@ class Command extends Jsonable
     public function jsonSerialize(): array
     {
         $data = [
-            'application_id' => $this->applicationId,
-            'guild_id' => $this->guildId,
-            'name' => $this->name,
-            'description' => $this->description,
-            'default_member_permissions' => $this->defaultMemberPermissions,
-            'dm_permission' => $this->dmPermission,
-            'version' => $this->version,
+            'type' => $this->type(),
+            'name' => $this->name(),
+            'description' => $this->description(),
         ];
+
+        if ($this->hasApplicationId()) {
+            $data['application_id'] = $this->applicationId();
+        }
+
+        if ($this->hasDefaultMemberPermissions()) {
+            $data['default_member_permissions'] = $this->defaultMemberPermissions();
+        }
+
+        if ($this->hasDmPermission()) {
+            $data['dm_permission'] = $this->dmPermission();
+        }
+
+        if ($this->hasVersion()) {
+            $data['version'] = $this->version();
+        }
+
+        if (in_array(UniquePerGuild::class, class_uses($this))) {
+            $data['guild_id'] = $this->guildId();
+        }
+
+        if (in_array(HasCommandOptions::class, class_uses($this))) {
+            if ($this->hasOptions()) {
+                $data['options'] = [];
+
+                foreach ($this->options() as $option) {
+                    $data['options'][] = $option->jsonSerialize();
+                }
+            }
+        }
 
         return array_filter($data);
     }

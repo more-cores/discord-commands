@@ -2,7 +2,6 @@
 
 namespace DiscordBuilder\Messages\Embed;
 
-use DiscordBuilder\Messages\Embed\Author;
 use PHPUnit\Framework\TestCase;
 
 class AuthorTest extends TestCase

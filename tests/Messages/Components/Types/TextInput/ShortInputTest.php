@@ -2,7 +2,6 @@
 
 namespace DiscordBuilder\Messages\Components\Types\TextInput;
 
-use DiscordBuilder\Messages\Components\Types\SelectMenu\Option;
 use PHPUnit\Framework\TestCase;
 
 class ShortInputTest extends TestCase
