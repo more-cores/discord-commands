@@ -2,9 +2,6 @@
 
 namespace DiscordBuilder\Commands\Options\Choices;
 
-use DiscordBuilder\Channel;
-use DiscordBuilder\Commands\Options\Choices\StringChoice;
-use DiscordBuilder\Commands\Options\Types\ChannelOption;
 use PHPUnit\Framework\TestCase;
 
 class StringChoiceTest extends TestCase

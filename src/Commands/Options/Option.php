@@ -3,7 +3,6 @@
 namespace DiscordBuilder\Commands\Options;
 
 use DiscordBuilder\Commands\HasCommandOptions;
-use DiscordBuilder\Commands\Options\HasOptionChoices;
 use DiscordBuilder\Jsonable;
 
 class Option extends Jsonable

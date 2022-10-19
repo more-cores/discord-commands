@@ -2,8 +2,8 @@
 
 namespace DiscordBuilder\Commands\Options\Types;
 
-use DiscordBuilder\Commands\Options\HasOptionChoices;
 use DiscordBuilder\Commands\Options\HasMinAndMaxLength;
+use DiscordBuilder\Commands\Options\HasOptionChoices;
 use DiscordBuilder\Commands\Options\Option;
 
 class StringOption extends Option

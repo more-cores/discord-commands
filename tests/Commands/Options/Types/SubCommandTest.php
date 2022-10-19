@@ -2,7 +2,6 @@
 
 namespace DiscordBuilder\Commands\Options;
 
-use DiscordBuilder\Commands\HasCommandOptions;
 use DiscordBuilder\Commands\Options\Types\SubCommandOption;
 use PHPUnit\Framework\TestCase;
 
