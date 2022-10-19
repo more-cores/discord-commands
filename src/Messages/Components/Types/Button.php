@@ -105,8 +105,7 @@ class Button extends Component
     public function jsonSerialize(): array
     {
         $data = [
-            'style' => $this->style,
-            'disabled' => $this->disabled,
+            'style' => $this->style(),
         ];
 
         if ($this->hasLabel()) {
@@ -125,11 +124,15 @@ class Button extends Component
             $data['emoji'] = $this->emoji->jsonSerialize();
         }
 
-        return array_filter(
+        $data = array_filter(
             array_merge(
                 parent::jsonSerialize(),
                 $data,
             )
         );
+
+        $data['disabled'] = $this->isDisabled();
+
+        return $data;
     }
 }

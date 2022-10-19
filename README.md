@@ -1,6 +1,6 @@
-# Discord Message Builder
+# Discord Builder
 
-A small library for building Discord messages.
+A small library for building Discord messages and commands.
 
 # Installation
 
@@ -8,9 +8,9 @@ A small library for building Discord messages.
 composer require more-cores/discord-builder
 ```
 
-# Usage
+# Creating Messages
 
-Using webhooks (they have higher rate limits):
+Creating webhook messages (they have higher rate limits):
 
 ```php
 $message = new WebhookMessage();
@@ -32,7 +32,7 @@ Or using standard messaging:
 ```php
 $message = new Message();
 $message->setContent($content);
-$message->setEmbed($embed);
+$message->addEmbed($embed);
 
 ```
 
@@ -169,3 +169,6 @@ $message->addComponent(new ChannelSelectMenu($menuId, [
 $message->addComponent(new ShortInput($fieldId, 'First Name'));
 $message->addComponent(new ParagraphInput($fieldId, 'Dating Profile'));
 ```
+
+# Creating Commands
+

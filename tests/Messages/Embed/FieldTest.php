@@ -2,7 +2,6 @@
 
 namespace DiscordBuilder\Messages\Embed;
 
-use DiscordBuilder\Messages\Embed\Field;
 use PHPUnit\Framework\TestCase;
 
 class FieldTest extends TestCase

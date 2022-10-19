@@ -84,14 +84,17 @@ class SelectMenu extends Component
             'placeholder' => $this->placeholder(),
             'min_values' => $this->minValues(),
             'max_values' => $this->maxValues(),
-            'disabled' => $this->isDisabled(),
         ];
 
-        return array_filter(
+        $data = array_filter(
             array_merge(
                 parent::jsonSerialize(),
                 $data,
             )
         );
+
+        $data['disabled'] = $this->isDisabled();
+
+        return $data;
     }
 }

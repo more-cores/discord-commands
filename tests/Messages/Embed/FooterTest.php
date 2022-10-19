@@ -2,7 +2,6 @@
 
 namespace DiscordBuilder\Messages\Embed;
 
-use DiscordBuilder\Messages\Embed\Footer;
 use PHPUnit\Framework\TestCase;
 
 class FooterTest extends TestCase
