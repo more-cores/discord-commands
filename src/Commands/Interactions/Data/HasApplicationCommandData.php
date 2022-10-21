@@ -2,7 +2,7 @@
 
 namespace DiscordBuilder\Commands\Interactions\Data;
 
-use DiscordBuilder\Commands\Interactions\ApplicationCommandDataOption;
+use DiscordBuilder\Commands\Interactions\Data\ApplicationCommandDataOption;
 
 trait HasApplicationCommandData
 {

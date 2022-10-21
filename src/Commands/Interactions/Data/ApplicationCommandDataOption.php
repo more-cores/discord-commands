@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions;
+namespace DiscordBuilder\Commands\Interactions\Data;
 
 use DiscordBuilder\Hydrateable;
 
