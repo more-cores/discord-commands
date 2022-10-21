@@ -11,9 +11,22 @@ class ChatInputCommand extends Command
 
     public const TYPE = 1;
 
-    public function __construct() {
+    public function __construct(
+        ?string $applicationId = null,
+        string $name = '',
+        string $description = '',
+        ?bool $dmPermission = null,
+        ?bool $defaultMemberPermissions = null,
+        ?bool $version = null,
+    ) {
         parent::__construct(
             type: self::TYPE,
+            applicationId: $applicationId,
+            name: $name,
+            description: $description,
+            dmPermission: $dmPermission,
+            defaultMemberPermissions: $defaultMemberPermissions,
+            version: $version,
         );
     }
 }

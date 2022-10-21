@@ -30,24 +30,4 @@ class IntegerOption extends Option
         $this->setMinValue($minValue);
         $this->setMaxValue($maxValue);
     }
-
-    public function jsonSerialize(): array
-    {
-        $data = [];
-
-        if ($this->hasMinLength()) {
-            $data['min_Length'] = $this->minLength();
-        }
-
-        if ($this->hasMaxLength()) {
-            $data['max_Length'] = $this->maxLength();
-        }
-
-        return array_filter(
-            array_merge(
-                parent::jsonSerialize(),
-                $data,
-            )
-        );
-    }
 }
