@@ -172,3 +172,11 @@ $message->addComponent(new ParagraphInput($fieldId, 'Dating Profile'));
 
 # Creating Commands
 
+# Handling Command Interactions
+
+You can use our factory to hydrate objects that represent incoming interactions within Discord.  Here's an example using a Laravel request object:
+
+```php
+$factory = new InteractionTypeFactory();
+$interaction = $factory->make($request->json('type'), $request->json());
+```
