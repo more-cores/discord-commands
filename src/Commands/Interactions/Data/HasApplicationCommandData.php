@@ -2,22 +2,22 @@
 
 namespace DiscordBuilder\Commands\Interactions\Data;
 
-use DiscordBuilder\Commands\Interactions\Data\ApplicationCommandDataOption;
-
 trait HasApplicationCommandData
 {
-    protected array $data = [];
+    protected ?ApplicationCommandData $data = null;
 
     public function hasData(): bool
     {
-        return count($this->data) > 0;
+        return $this->data !== null;
     }
 
-    /**
-     * @return ApplicationCommandDataOption[]
-     */
-    public function data(): array
+    public function data(): ApplicationCommandData
     {
         return $this->data;
+    }
+
+    public function hydrateApplicationCommandData(array $data): void
+    {
+        $this->data = (new ApplicationCommandData())->hydrate($data);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace DiscordBuilder\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\Types\ApplicationCommand;
-use DiscordBuilder\Commands\Interactions\Types\ApplicationCommandAutocomplete;
+use DiscordBuilder\Commands\Interactions\Types\CommandExecuted;
+use DiscordBuilder\Commands\Interactions\Types\CommandExecutionWantsAutocompletionOptions;
 use DiscordBuilder\Commands\Interactions\Types\Ping;
 use PHPUnit\Framework\TestCase;
 
@@ -20,13 +20,13 @@ class InteractionFactoryTest extends TestCase
         );
 
         $this->assertInstanceOf(
-            ApplicationCommand::class,
-            $factory->make(ApplicationCommand::TYPE, [])
+            CommandExecuted::class,
+            $factory->make(CommandExecuted::TYPE, [])
         );
 
         $this->assertInstanceOf(
-            ApplicationCommandAutocomplete::class,
-            $factory->make(ApplicationCommandAutocomplete::TYPE, [])
+            CommandExecutionWantsAutocompletionOptions::class,
+            $factory->make(CommandExecutionWantsAutocompletionOptions::TYPE, [])
         );
     }
 }

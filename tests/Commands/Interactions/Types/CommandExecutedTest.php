@@ -3,11 +3,11 @@
 namespace DiscordBuilder\Commands\Options;
 
 use DiscordBuilder\Commands\Interactions\Interaction;
-use DiscordBuilder\Commands\Interactions\Types\ApplicationCommand;
+use DiscordBuilder\Commands\Interactions\Types\CommandExecuted;
 use DiscordBuilder\Commands\Options\Types\SubCommandOption;
 use PHPUnit\Framework\TestCase;
 
-class ApplicatonCommandTest extends TestCase
+class CommandExecutedTest extends TestCase
 {
     /** @test */
     public function serializesInteractions()
@@ -71,20 +71,18 @@ class ApplicatonCommandTest extends TestCase
     /** @test */
     public function serializesData()
     {
-        $command = new ApplicationCommand();
+        $command = new CommandExecuted();
 
         $this->assertFalse($command->hasData());
 
         $command->hydrate([
             'data' => [
-                [
-                    'name' => $name = 'asdf',
-                ],
+                'name' => $name = 'asdf',
             ]
         ]);
 
         $this->assertTrue($command->hasData());
 
-        $this->assertEquals($name, $command->data()[0]->commandName());
+        $this->assertEquals($name, $command->data()->commandName());
     }
 }

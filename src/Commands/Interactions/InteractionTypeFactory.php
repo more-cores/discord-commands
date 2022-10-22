@@ -2,8 +2,8 @@
 
 namespace DiscordBuilder\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\Types\ApplicationCommand;
-use DiscordBuilder\Commands\Interactions\Types\ApplicationCommandAutocomplete;
+use DiscordBuilder\Commands\Interactions\Types\CommandExecuted;
+use DiscordBuilder\Commands\Interactions\Types\CommandExecutionWantsAutocompletionOptions;
 use DiscordBuilder\Commands\Interactions\Types\Ping;
 
 class InteractionTypeFactory
@@ -12,8 +12,8 @@ class InteractionTypeFactory
     {
         $interaction = match ($type) {
             Ping::TYPE                              => new Ping(),
-            ApplicationCommand::TYPE                => new ApplicationCommand(),
-            ApplicationCommandAutocomplete::TYPE    => new ApplicationCommandAutocomplete(),
+            CommandExecuted::TYPE                => new CommandExecuted(),
+            CommandExecutionWantsAutocompletionOptions::TYPE    => new CommandExecutionWantsAutocompletionOptions(),
         };
 
         $interaction->hydrate($request);

@@ -136,12 +136,7 @@ class Interaction implements Hydrateable
 
         $traitsUsed = class_uses($this);
         if (isset($array['data']) && in_array(HasApplicationCommandData::class, $traitsUsed)) {
-            $data = [];
-            foreach ($array['data'] as $rawData) {
-                $data[] = (new ApplicationCommandData())
-                    ->hydrate($rawData);
-            }
-            $this->data = $data;
+            $this->hydrateApplicationCommandData($array['data']);
         }
 
         if (isset($array['token'])) {
