@@ -123,7 +123,7 @@ class WebhookMessage extends Jsonable implements Hydrateable
             $jsonData['thread_name'] = $this->threadName;
         }
 
-        $traitsUsed = class_uses(self::class);
+        $traitsUsed = array_merge(class_uses(self::class), class_uses($this));
         if (in_array(HasComponents::class, $traitsUsed)) {
             $jsonData['components'] = $this->serializeComponents();
         }

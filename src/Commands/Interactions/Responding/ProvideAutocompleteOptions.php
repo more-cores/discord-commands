@@ -25,7 +25,7 @@ class ProvideAutocompleteOptions extends Jsonable implements CommandResponse
     {
         $jsonData = [];
 
-        $traitsUsed = class_uses(self::class);
+        $traitsUsed = array_merge(class_uses(self::class), class_uses($this));
         if (in_array(HasOptionChoices::class, $traitsUsed)) {
             $jsonData['choices'] = $this->serializeChoices();
         }
