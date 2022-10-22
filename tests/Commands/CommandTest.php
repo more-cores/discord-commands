@@ -110,7 +110,7 @@ class CommandTest extends TestCase
         yield [
             [
                 'jsonKey' => 'dm_permission',
-                'classProperty' => 'dmPermission',
+                'classProperty' => 'defaultMemberPermissions',
                 'testValue' => true,
             ],
         ];
