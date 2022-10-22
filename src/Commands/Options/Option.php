@@ -71,7 +71,7 @@ class Option extends Jsonable
             'required' => $this->isRequired(),
         ];
 
-        $traitsUsed = class_uses($this);
+        $traitsUsed = class_uses(self::class);
         if (in_array(HasCommandOptions::class, $traitsUsed)) {
             if ($this->hasOptions()) {
                 $data['options'] = [];

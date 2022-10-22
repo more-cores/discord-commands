@@ -133,7 +133,7 @@ class Interaction implements Hydrateable
             $this->user = $array['user'];
         }
 
-        $traitsUsed = class_uses($this);
+        $traitsUsed = class_uses(self::class);
         if (isset($array['data']) && in_array(HasExecutionResults::class, $traitsUsed)) {
             $this->hydrateExecutionResults($array['data']);
         }

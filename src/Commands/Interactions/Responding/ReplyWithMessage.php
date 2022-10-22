@@ -113,7 +113,7 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
             $jsonData['flags'] = array_sum($this->flags);
         }
 
-        $traitsUsed = class_uses($this);
+        $traitsUsed = class_uses(self::class);
         if (in_array(HasComponents::class, $traitsUsed)) {
             $jsonData['components'] = $this->serializeComponents();
         }

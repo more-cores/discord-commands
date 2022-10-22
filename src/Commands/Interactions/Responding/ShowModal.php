@@ -55,7 +55,7 @@ class ShowModal extends Jsonable implements CommandResponse
             'title' => $this->title(),
         ];
 
-        $traitsUsed = class_uses($this);
+        $traitsUsed = class_uses(self::class);
         if (in_array(HasComponents::class, $traitsUsed)) {
             $jsonData['components'] = $this->serializeComponents();
         }

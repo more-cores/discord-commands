@@ -102,7 +102,7 @@ class Message extends Jsonable implements Hydrateable
             'content' => $this->content(),
         ];
 
-        $traitsUsed = class_uses($this);
+        $traitsUsed = class_uses(self::class);
         if (in_array(HasComponents::class, $traitsUsed)) {
             $jsonData['components'] = $this->serializeComponents();
         }
