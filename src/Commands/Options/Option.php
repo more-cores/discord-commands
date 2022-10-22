@@ -83,13 +83,7 @@ class Option extends Jsonable
         }
 
         if (in_array(HasOptionChoices::class, $traitsUsed)) {
-            if ($this->hasChoices()) {
-                $data['choices'] = [];
-
-                foreach ($this->choices() as $choice) {
-                    $data['choices'][] = $choice->jsonSerialize();
-                }
-            }
+            $data['choices'] = $this->serializeChoices();
         }
 
         if (in_array(HasAutocomplete::class, $traitsUsed)) {

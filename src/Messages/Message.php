@@ -2,6 +2,7 @@
 
 namespace DiscordBuilder\Messages;
 
+use DiscordBuilder\Messages\Components\HasComponents;
 use DiscordBuilder\Hydrateable;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
@@ -9,9 +10,10 @@ use DiscordBuilder\Messages\Embed\Embed;
 
 class Message extends Jsonable implements Hydrateable
 {
+    use HasComponents;
+    use HasEmbeds;
+
     protected ?string $content;
-    protected array $embeds = [];
-    protected array $components = [];
 
     /**
      * @param string|null $content
@@ -78,46 +80,6 @@ class Message extends Jsonable implements Hydrateable
         return str_contains($this->content, '<@&' . $roleId . '>');
     }
 
-    public function addEmbed(Embed $embed): void
-    {
-        $this->embeds[] = $embed;
-    }
-
-    /**
-     * @return Embed[]
-     */
-    public function embeds(): array
-    {
-        return $this->embeds;
-    }
-
-    public function hasEmbeds(): bool
-    {
-        return count($this->embeds) > 0;
-    }
-
-    public function addComponent(Component $component): void
-    {
-        $this->components[] = $component;
-    }
-
-    public function setComponents(array $components): void
-    {
-        $this->components = $components;
-    }
-
-    /**
-     * @return Component[]
-     */
-    public function components(): array
-    {
-        return $this->components;
-    }
-
-    public function hasComponents(): bool
-    {
-        return count($this->components) > 0;
-    }
 
     public function hydrate(array $array): self
     {
@@ -128,13 +90,7 @@ class Message extends Jsonable implements Hydrateable
         // Component hydration is not currently supported - PR's welcome
 
         if (isset($array['embeds'])) {
-            foreach ($array['embeds'] as $embed) {
-                if ($embed instanceof Embed) {
-                    $this->addEmbed($embed);
-                } else {
-                    $this->addEmbed((new Embed)->hydrate($embed));
-                }
-            }
+            $this->hydrateEmbeds($array['embeds']);
         }
 
         return $this;
@@ -146,20 +102,12 @@ class Message extends Jsonable implements Hydrateable
             'content' => $this->content(),
         ];
 
-        if ($this->hasComponents()) {
-            $jsonData['components'] = [];
-
-            foreach ($this->components() as $component) {
-                $jsonData['components'][] = $component->jsonSerialize();
-            }
+        $traitsUsed = class_uses($this);
+        if (in_array(HasComponents::class, $traitsUsed)) {
+            $jsonData['components'] = $this->serializeComponents();
         }
-
-        if ($this->hasEmbeds()) {
-            $jsonData['embeds'] = [];
-
-            foreach ($this->embeds() as $embed) {
-                $jsonData['embeds'][] = $embed->jsonSerialize();
-            }
+        if (in_array(HasEmbeds::class, $traitsUsed)) {
+            $jsonData['embeds'] = $this->serializeEmbeds();
         }
 
         return $jsonData;

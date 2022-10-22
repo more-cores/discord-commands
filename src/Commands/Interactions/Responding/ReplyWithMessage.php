@@ -1,22 +1,26 @@
 <?php
 
-namespace DiscordBuilder\Messages;
+namespace DiscordBuilder\Commands\Interactions\Responding;
 
-use DiscordBuilder\Messages\Components\HasComponents;
-use DiscordBuilder\Hydrateable;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
+use DiscordBuilder\Messages\Components\HasComponents;
+use DiscordBuilder\Messages\HasEmbeds;
 use DiscordBuilder\Messages\Embed\Embed;
 
-class WebhookMessage extends Jsonable implements Hydrateable
+class ReplyWithMessage extends Jsonable
 {
+    public const TYPE = 4;
+
+    public const FLAG_SUPPRESS_EMBEDS = 0x0000000000000004;
+    public const FLAG_EPHEMERAL = 0x0000000000000040;
+
     use HasComponents;
     use HasEmbeds;
 
     protected ?string $content;
-    protected ?string $threadName;
-    protected ?string $webhookUsername;
-    protected ?string $webhookAvatarUrl;
+    protected array $embeds = [];
+    protected array $flags = [];
 
     /**
      * @param string|null $content
@@ -27,16 +31,12 @@ class WebhookMessage extends Jsonable implements Hydrateable
         ?string $content = null,
         array $embeds = [],
         array $components = [],
-        ?string $threadName = null,
-        ?string $webhookUsername = null,
-        ?string $webhookAvatarUrl = null,
+        array $flags = [],
     ) {
         $this->content = $content;
         $this->embeds = $embeds;
         $this->components = $components;
-        $this->threadName = $threadName;
-        $this->webhookUsername = $webhookUsername;
-        $this->webhookAvatarUrl = $webhookAvatarUrl;
+        $this->flags = $flags;
     }
 
     public function setContent(string $content): void
@@ -86,41 +86,24 @@ class WebhookMessage extends Jsonable implements Hydrateable
         return str_contains($this->content, '<@&' . $roleId . '>');
     }
 
-    public function createThreadWithName(string $threadName)
+    public function suppressEmbeds(): void
     {
-        $this->threadName = $threadName;
+        $this->flags[] = self::FLAG_SUPPRESS_EMBEDS;
     }
 
-    public function threadNameToCreate(): string
+    public function onlyVisibleToCommandIssuer(): void
     {
-        return $this->threadName;
-    }
-
-    public function hydrate(array $array): self
-    {
-        if (isset($array['content'])) {
-            $this->setContent($array['content']);
-        }
-
-        // Component hydration is not currently supported - PR's welcome
-
-        if (isset($array['embeds'])) {
-            $this->hydrateEmbeds($array['embeds']);
-        }
-
-        return $this;
+        $this->flags[] = self::FLAG_EPHEMERAL;
     }
 
     public function jsonSerialize(): array
     {
         $jsonData = [
             'content' => $this->content(),
-            'username' => $this->webhookUsername,
-            'avatar_url' => $this->webhookAvatarUrl,
         ];
 
-        if (isset($this->threadName)) {
-            $jsonData['thread_name'] = $this->threadName;
+        if (count($this->flags) > 0) {
+            $jsonData['flags'] = array_sum($this->flags);
         }
 
         $traitsUsed = class_uses($this);
@@ -131,6 +114,9 @@ class WebhookMessage extends Jsonable implements Hydrateable
             $jsonData['embeds'] = $this->serializeEmbeds();
         }
 
-        return $jsonData;
+        return [
+            'type' => self::TYPE,
+            'data' => $jsonData,
+        ];
     }
 }

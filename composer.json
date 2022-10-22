@@ -20,6 +20,9 @@
   "require": {
     "php": ">=8.1"
   },
+  "suggest": {
+    "illuminate/database": "[] is required when using this package to respond to command interactions."
+  },
   "require-dev": {
     "mockery/mockery": "^1.0",
     "phpunit/phpunit": "^9.0"

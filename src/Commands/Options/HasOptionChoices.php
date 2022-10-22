@@ -33,4 +33,16 @@ trait HasOptionChoices
     {
         $this->choices[] = $choices;
     }
+
+    protected function serializeChoices(): array
+    {
+        $choices = [];
+        if ($this->hasChoices()) {
+            foreach ($this->choices() as $choice) {
+                $choices[] = $choice->jsonSerialize();
+            }
+        }
+
+        return $choices;
+    }
 }
