@@ -4,7 +4,7 @@ namespace DiscordBuilder\Commands\Interactions\Responding;
 
 use DiscordBuilder\Jsonable;
 
-class Pong extends Jsonable
+class Pong extends Jsonable implements CommandResponse
 {
     public const TYPE = 1;
 

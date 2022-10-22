@@ -6,7 +6,7 @@ use DiscordBuilder\Messages\Components\HasComponents;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
 
-class ShowModal extends Jsonable
+class ShowModal extends Jsonable implements CommandResponse
 {
     public const TYPE = 9;
 

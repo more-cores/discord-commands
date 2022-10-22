@@ -8,7 +8,7 @@ use DiscordBuilder\Messages\Components\HasComponents;
 use DiscordBuilder\Messages\HasEmbeds;
 use DiscordBuilder\Messages\Embed\Embed;
 
-class ReplyWithMessage extends Jsonable
+class ReplyWithMessage extends Jsonable implements CommandResponse
 {
     public const TYPE = 4;
 

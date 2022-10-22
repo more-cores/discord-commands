@@ -6,7 +6,7 @@ use DiscordBuilder\Commands\Options\Choices\Choice;
 use DiscordBuilder\Commands\Options\HasOptionChoices;
 use DiscordBuilder\Jsonable;
 
-class ProvideAutocompleteOptions extends Jsonable
+class ProvideAutocompleteOptions extends Jsonable implements CommandResponse
 {
     public const TYPE = 8;
 
