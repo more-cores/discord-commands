@@ -180,3 +180,58 @@ You can use our factory to hydrate objects that represent incoming interactions 
 $factory = new InteractionTypeFactory();
 $interaction = $factory->make($request->json('type'), $request->json());
 ```
+
+## Request verification
+
+Discord requires that you verify the signature of inbound requests from their system.  You'll need to have this in place in order to even configure your interactions endpoint.
+
+You'll need to run `composer require simplito/elliptic-php` to add the necessary dependency, then you can verify the request like this:
+
+```php
+$verifier = new SignatureVerifier();
+
+if (!$verifier->verify(
+    rawBody: file_get_contents('php://input'),
+    publicKey: getenv('DISCORD_BOT_PUBLIC_KEY'),
+    signature: $_SERVER['HTTP_X_SIGNATURE_ED25519'],
+    timestamp: $_SERVER['HTTP_X_SIGNATURE_TIMESTAMP'],
+)) {
+    return http_response_code(401);
+}
+
+// Everything's good, do the rest here
+```
+
+### Laravel middleware
+
+For Laravel applications, we've included a middleware out of the box to assist with this.  You can configure a route in `routes/api.php` and wrap it with our verification middleware:
+
+```php
+Route::group([
+    'prefix' => 'discord',
+    'namespace' => 'Api\Discord',
+    'middleware' => LaravelDiscordSignatureVerificationMiddleware::class,
+], function () {
+    Route::post(
+        'webhook/command/interactions',
+        'CommandInteractionController@userInteracted'
+    );
+});
+```
+
+Then in your controller, make sure you respond to `Ping` with a `Pong`...
+
+```php
+    public function userInteracted(
+        Request $request,
+        InteractionTypeFactory $interactionTypeFactory
+    ) {
+        $interaction = $interactionTypeFactory->make($request->json('type'), $request->all());
+
+        if ($interaction instanceof Ping) {
+            return new Pong();
+        }
+
+        // generate other responses based on the inbound interaction
+    }
+```

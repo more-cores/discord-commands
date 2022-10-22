@@ -10,9 +10,9 @@ class LaravelDiscordSignatureVerificationMiddleware
         private SignatureVerifier $verifier
     ) {}
 
-    protected function getKey()
+    protected function botPublicKey()
     {
-        return getenv('DISCORD_BOT_KEY');
+        return getenv('DISCORD_BOT_PUBLIC_KEY');
     }
 
     /**
@@ -26,7 +26,7 @@ class LaravelDiscordSignatureVerificationMiddleware
     {
         if (!$this->verifier->verify(
             rawBody: $request->getContent(),
-            publicKey: $this->getKey(),
+            publicKey: $this->botPublicKey(),
             signature: $request->header('x-signature-'.SignatureVerifier::CURVE),
             timestamp: $request->header('x-signature-timestamp'),
         )) {
