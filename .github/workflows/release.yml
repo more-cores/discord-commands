@@ -21,14 +21,13 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: "${{ matrix.php-version }}"
-          php_extensions: gmp
+          args: --ignore-platform-req=ext-gmp
 
       - name: Run phpunit tests
         uses: php-actions/phpunit@v3
         with:
           bootstrap: vendor/autoload.php
           php_version: "${{ matrix.php-version }}"
-          php_extensions: gmp
           configuration: phpunit.xml
 
   create-release:
