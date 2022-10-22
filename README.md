@@ -172,6 +172,30 @@ $message->addComponent(new ParagraphInput($fieldId, 'Dating Profile'));
 
 # Creating Commands
 
+## Chat commands
+
+To create a chat command, create a class like this:
+
+```php
+class Subscribe extends ChatInputCommand
+{
+    public const NAME = 'my-command';
+
+    public function __construct()
+    {
+        parent::__construct(
+            name: self::NAME,
+            description: 'This is executable by the higher ups in the guild',
+            availableInDms: false,
+            defaultMemberPermissions: [
+                Permission::ADMINISTRATOR,
+                Permission::MANAGE_GUILD,
+            ]
+        );
+    }
+}
+```
+
 # Handling Command Interactions
 
 You can use our factory to hydrate objects that represent incoming interactions within Discord.  Here's an example using a Laravel request object:

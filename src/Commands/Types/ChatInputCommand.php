@@ -16,7 +16,7 @@ class ChatInputCommand extends Command
         string $name = '',
         string $description = '',
         ?bool $availableInDms = null,
-        mixed $defaultMemberPermissions = null,
+        array|int $defaultMemberPermissions = null,
         ?bool $version = null,
     ) {
         parent::__construct(

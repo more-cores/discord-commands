@@ -11,7 +11,7 @@ class Command extends Jsonable
     protected ?string $applicationId = null;
     protected string $name = '';
     protected string $description = '';
-    protected ?string $defaultMemberPermissions = null;
+    protected ?int $defaultMemberPermissions = null;
     protected ?bool $availableInDms = null;
     protected ?string $version = null;
 
@@ -21,7 +21,7 @@ class Command extends Jsonable
         string $name = '',
         string $description = '',
         ?bool $availableInDms = null,
-        mixed $defaultMemberPermissions = null,
+        array|int $defaultMemberPermissions = null,
         ?bool $version = null,
     ) {
         $this->description = $description;
@@ -91,7 +91,7 @@ class Command extends Jsonable
         return $this->defaultMemberPermissions !== null;
     }
 
-    public function availableInDms(): ?bool
+    public function availableInDms(): bool
     {
         return $this->availableInDms;
     }
@@ -109,7 +109,7 @@ class Command extends Jsonable
     public function disableForEveryoneButAdmins(): void
     {
         $this->setDefaultMemberPermissions(
-            self::PERMISSION_DISABLE_FOR_NON_ADMINS
+            self::PERMISSION_DISABLE_FOR_NON_ADMINS,
         );
     }
 
@@ -144,7 +144,7 @@ class Command extends Jsonable
             $data['default_member_permissions'] = $this->defaultMemberPermissions();
         }
 
-        if ($this->hasavailableInDms()) {
+        if ($this->hasAvailableInDms()) {
             $data['dm_permission'] = $this->availableInDms();
         }
 

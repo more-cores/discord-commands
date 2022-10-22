@@ -13,7 +13,7 @@ class MessageCommand extends Command
         string $name = '',
         string $description = '',
         ?bool $dmPermission = null,
-        ?bool $defaultMemberPermissions = null,
+        array|int $defaultMemberPermissions = null,
         ?bool $version = null,
     ) {
         parent::__construct(
