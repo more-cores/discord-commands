@@ -3,6 +3,7 @@
 namespace DiscordBuilder\Commands;
 
 use DiscordBuilder\Commands\Options\Option;
+use DiscordBuilder\Permissions\Permission;
 use PHPUnit\Framework\TestCase;
 
 class CommandTest extends TestCase
@@ -160,5 +161,24 @@ class CommandTest extends TestCase
 
         $this->assertArrayHasKey('options', $json);
         $this->assertEquals($optionType, $json['options'][0]['type']);
+    }
+
+    /** @test */
+    public function acceptsArrayForMemberPermissions()
+    {
+        $command = new class(type: time()) extends Command {};
+
+        $this->assertFalse($command->hasDefaultMemberPermissions());
+
+        $command->setDefaultMemberPermissions(Permission::MANAGE_GUILD);
+
+        $this->assertEquals(Permission::MANAGE_GUILD, $command->defaultMemberPermissions());
+
+        $combinedPermissions = array_sum([
+            Permission::MANAGE_GUILD,
+            Permission::ADMINISTRATOR,
+        ]);
+        $command->setDefaultMemberPermissions($combinedPermissions);
+        $this->assertEquals($combinedPermissions, $command->defaultMemberPermissions());
     }
 }

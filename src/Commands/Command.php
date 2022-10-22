@@ -12,7 +12,7 @@ class Command extends Jsonable
     protected string $name = '';
     protected string $description = '';
     protected ?string $defaultMemberPermissions = null;
-    protected ?bool $dmPermission = null;
+    protected ?bool $availableInDms = null;
     protected ?string $version = null;
 
     public function __construct(
@@ -20,15 +20,15 @@ class Command extends Jsonable
         ?string $applicationId = null,
         string $name = '',
         string $description = '',
-        ?bool $dmPermission = null,
-        ?bool $defaultMemberPermissions = null,
+        ?bool $availableInDms = null,
+        mixed $defaultMemberPermissions = null,
         ?bool $version = null,
     ) {
         $this->description = $description;
         $this->applicationId = $applicationId;
         $this->name = $name;
         $this->defaultMemberPermissions = $defaultMemberPermissions;
-        $this->dmPermission = $dmPermission;
+        $this->availableInDms = $availableInDms;
         $this->version = $version;
     }
 
@@ -77,8 +77,12 @@ class Command extends Jsonable
         return $this->defaultMemberPermissions;
     }
 
-    public function setDefaultMemberPermissions(?string $defaultMemberPermissions = null): void
+    public function setDefaultMemberPermissions(array|int $defaultMemberPermissions = null): void
     {
+        if (is_array($defaultMemberPermissions)) {
+            $defaultMemberPermissions = array_sum($defaultMemberPermissions);
+        }
+
         $this->defaultMemberPermissions = $defaultMemberPermissions;
     }
 
@@ -87,19 +91,19 @@ class Command extends Jsonable
         return $this->defaultMemberPermissions !== null;
     }
 
-    public function dmPermission(): ?bool
+    public function availableInDms(): ?bool
     {
-        return $this->dmPermission;
+        return $this->availableInDms;
     }
 
-    public function setDmPermission(?string $dmPermission = null): void
+    public function setAvailableInDms(?bool $availableInDms = null): void
     {
-        $this->dmPermission = $dmPermission;
+        $this->availableInDms = $availableInDms;
     }
 
-    public function hasDmPermission(): bool
+    public function hasAvailableInDms(): bool
     {
-        return $this->dmPermission !== null;
+        return $this->availableInDms !== null;
     }
 
     public function disableForEveryoneButAdmins(): void
@@ -140,8 +144,8 @@ class Command extends Jsonable
             $data['default_member_permissions'] = $this->defaultMemberPermissions();
         }
 
-        if ($this->hasDmPermission()) {
-            $data['dm_permission'] = $this->dmPermission();
+        if ($this->hasavailableInDms()) {
+            $data['dm_permission'] = $this->availableInDms();
         }
 
         if ($this->hasVersion()) {
