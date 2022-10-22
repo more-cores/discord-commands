@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Verification;
+namespace DiscordBuilder\Verification;
 
 class SignatureVerifier
 {

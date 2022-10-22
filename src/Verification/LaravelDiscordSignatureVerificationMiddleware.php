@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Verification;
+namespace DiscordBuilder\Verification;
 
 use Closure;
 
-class LaravelDiscordInteractionSignatureVerifier
+class LaravelDiscordSignatureVerificationMiddleware
 {
     public function __construct(
         private SignatureVerifier $verifier

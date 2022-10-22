@@ -1,8 +1,7 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordBuilder\Verification;
 
-use DiscordBuilder\Commands\Interactions\Verification\SignatureVerifier;
 use Elliptic\EdDSA;
 use PHPUnit\Framework\TestCase;
 
