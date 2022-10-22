@@ -152,11 +152,12 @@ class Command extends Jsonable
             $data['version'] = $this->version();
         }
 
-        if (in_array(UniquePerGuild::class, class_uses(self::class))) {
+        $traitsUsed = array_merge(class_uses(self::class), class_uses($this));
+        if (in_array(UniquePerGuild::class, $traitsUsed)) {
             $data['guild_id'] = $this->guildId();
         }
 
-        if (in_array(HasCommandOptions::class, class_uses(self::class))) {
+        if (in_array(HasCommandOptions::class, $traitsUsed)) {
             if ($this->hasOptions()) {
                 $data['options'] = [];
 
