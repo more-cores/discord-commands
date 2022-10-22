@@ -31,12 +31,19 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
         ?string $content = null,
         array $embeds = [],
         array $components = [],
-        array $flags = [],
+        bool $withoutExpandingEmbeds = null,
+        bool $onlyVisibleToCommandIssuer = null,
     ) {
         $this->content = $content;
         $this->embeds = $embeds;
         $this->components = $components;
-        $this->flags = $flags;
+
+        if ($withoutExpandingEmbeds !== null) {
+            $this->withoutExpandingEmbeds();
+        }
+        if ($onlyVisibleToCommandIssuer !== null) {
+            $this->onlyVisibleToCommandIssuer();
+        }
     }
 
     public function setContent(string $content): void
@@ -86,7 +93,7 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
         return str_contains($this->content, '<@&' . $roleId . '>');
     }
 
-    public function suppressEmbeds(): void
+    public function withoutExpandingEmbeds(): void
     {
         $this->flags[] = self::FLAG_SUPPRESS_EMBEDS;
     }

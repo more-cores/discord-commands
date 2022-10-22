@@ -24,11 +24,33 @@ class ReplyWithMessageTest extends TestCase
     }
 
     /** @test */
+    public function setsFlags()
+    {
+        $response = new ReplyWithMessage(
+            withoutExpandingEmbeds: true,
+        );
+        $json = $response->jsonSerialize();
+
+        $this->assertArrayHasKey('flags', $json['data']);
+        if (!(ReplyWithMessage::FLAG_SUPPRESS_EMBEDS & $json['data']['flags'])) {
+            $this->assertTrue(false, 'suppress embeds bitwise operator not applied');
+        }
+
+        $response = new ReplyWithMessage(
+            onlyVisibleToCommandIssuer: true,
+        );
+        $json = $response->jsonSerialize();
+        if (!(ReplyWithMessage::FLAG_EPHEMERAL & $json['data']['flags'])) {
+            $this->assertTrue(false, 'ephemeral bitwise operator not applied');
+        }
+    }
+
+    /** @test */
     public function serializesFlags()
     {
         $response = new ReplyWithMessage();
 
-        $response->suppressEmbeds();
+        $response->withoutExpandingEmbeds();
 
         $json = $response->jsonSerialize();
 
