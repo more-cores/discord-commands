@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Data;
+namespace DiscordBuilder\Commands\Interactions\ExecutionResults;
 
 use DiscordBuilder\Hydrateable;
 
-class ApplicationCommandDataOption implements Hydrateable
+class CommandResultsOption implements Hydrateable
 {
     protected string $name = '';
     protected int $type = 0;
@@ -67,7 +67,7 @@ class ApplicationCommandDataOption implements Hydrateable
 
         if (isset($array['options'])) {
             foreach ($array['options'] as $optionData) {
-                $this->options[] = (new ApplicationCommandDataOption())
+                $this->options[] = (new CommandResultsOption())
                     ->hydrate($optionData);
             }
         }

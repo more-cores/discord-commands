@@ -2,9 +2,9 @@
 
 namespace DiscordBuilder\Commands\Interactions\Responding;
 
-use DiscordBuilder\Messages\Components\HasComponents;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
+use DiscordBuilder\Messages\Components\HasComponents;
 
 class ShowModal extends Jsonable implements CommandResponse
 {

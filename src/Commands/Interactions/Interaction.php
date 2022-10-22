@@ -2,8 +2,7 @@
 
 namespace DiscordBuilder\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\Data\ApplicationCommandData;
-use DiscordBuilder\Commands\Interactions\Data\HasApplicationCommandData;
+use DiscordBuilder\Commands\Interactions\ExecutionResults\HasExecutionResults;
 use DiscordBuilder\Hydrateable;
 
 class Interaction implements Hydrateable
@@ -135,8 +134,8 @@ class Interaction implements Hydrateable
         }
 
         $traitsUsed = class_uses($this);
-        if (isset($array['data']) && in_array(HasApplicationCommandData::class, $traitsUsed)) {
-            $this->hydrateApplicationCommandData($array['data']);
+        if (isset($array['data']) && in_array(HasExecutionResults::class, $traitsUsed)) {
+            $this->hydrateExecutionResults($array['data']);
         }
 
         if (isset($array['token'])) {

@@ -2,12 +2,12 @@
 
 namespace DiscordBuilder\Commands\Interactions\Types;
 
-use DiscordBuilder\Commands\Interactions\Data\HasApplicationCommandData;
+use DiscordBuilder\Commands\Interactions\ExecutionResults\HasExecutionResults;
 use DiscordBuilder\Commands\Interactions\Interaction;
 
 class CommandExecutionWantsAutocompletionOptions extends Interaction
 {
-    use HasApplicationCommandData;
+    use HasExecutionResults;
 
     public const TYPE = 4;
 

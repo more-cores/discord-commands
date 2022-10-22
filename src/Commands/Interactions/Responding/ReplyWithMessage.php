@@ -5,8 +5,8 @@ namespace DiscordBuilder\Commands\Interactions\Responding;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
 use DiscordBuilder\Messages\Components\HasComponents;
-use DiscordBuilder\Messages\HasEmbeds;
 use DiscordBuilder\Messages\Embed\Embed;
+use DiscordBuilder\Messages\HasEmbeds;
 
 class ReplyWithMessage extends Jsonable implements CommandResponse
 {

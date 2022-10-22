@@ -2,10 +2,10 @@
 
 namespace DiscordBuilder\Messages;
 
-use DiscordBuilder\Messages\Components\HasComponents;
 use DiscordBuilder\Hydrateable;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
+use DiscordBuilder\Messages\Components\HasComponents;
 use DiscordBuilder\Messages\Embed\Embed;
 
 class WebhookMessage extends Jsonable implements Hydrateable

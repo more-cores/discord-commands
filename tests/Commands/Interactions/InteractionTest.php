@@ -2,7 +2,6 @@
 
 namespace DiscordBuilder\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\Interaction;
 use PHPUnit\Framework\TestCase;
 
 class InteractionTest extends TestCase
