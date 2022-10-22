@@ -27,7 +27,7 @@ class Command extends Jsonable
         $this->description = $description;
         $this->applicationId = $applicationId;
         $this->name = $name;
-        $this->defaultMemberPermissions = $defaultMemberPermissions;
+        $this->setDefaultMemberPermissions($defaultMemberPermissions);
         $this->availableInDms = $availableInDms;
         $this->version = $version;
     }
