@@ -3,10 +3,10 @@
 namespace DiscordBuilder\Commands\Options;
 
 use DiscordBuilder\Commands\Interactions\Interaction;
-use DiscordBuilder\Commands\Interactions\Types\CommandExecuted;
+use DiscordBuilder\Commands\Interactions\Types\ChatCommandExecuted;
 use PHPUnit\Framework\TestCase;
 
-class CommandExecutedTest extends TestCase
+class ChatCommandExecutedTest extends TestCase
 {
     /** @test */
     public function serializesInteractions()
@@ -70,7 +70,7 @@ class CommandExecutedTest extends TestCase
     /** @test */
     public function serializesData()
     {
-        $command = new CommandExecuted();
+        $command = new ChatCommandExecuted();
 
         $this->assertFalse($command->hasData());
 

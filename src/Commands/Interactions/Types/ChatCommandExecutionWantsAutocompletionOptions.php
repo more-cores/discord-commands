@@ -5,11 +5,11 @@ namespace DiscordBuilder\Commands\Interactions\Types;
 use DiscordBuilder\Commands\Interactions\ExecutionResults\HasExecutionResults;
 use DiscordBuilder\Commands\Interactions\Interaction;
 
-class CommandExecuted extends Interaction
+class ChatCommandExecutionWantsAutocompletionOptions extends Interaction
 {
     use HasExecutionResults;
 
-    public const TYPE = 2;
+    public const TYPE = 4;
 
     public function __construct() {
         parent::__construct(

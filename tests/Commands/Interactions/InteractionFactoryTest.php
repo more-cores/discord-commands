@@ -2,8 +2,8 @@
 
 namespace DiscordBuilder\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\Types\CommandExecuted;
-use DiscordBuilder\Commands\Interactions\Types\CommandExecutionWantsAutocompletionOptions;
+use DiscordBuilder\Commands\Interactions\Types\ChatCommandExecuted;
+use DiscordBuilder\Commands\Interactions\Types\ChatCommandExecutionWantsAutocompletionOptions;
 use DiscordBuilder\Commands\Interactions\Types\Ping;
 use PHPUnit\Framework\TestCase;
 
@@ -20,13 +20,13 @@ class InteractionFactoryTest extends TestCase
         );
 
         $this->assertInstanceOf(
-            CommandExecuted::class,
-            $factory->make(CommandExecuted::TYPE, [])
+            ChatCommandExecuted::class,
+            $factory->make(ChatCommandExecuted::TYPE, [])
         );
 
         $this->assertInstanceOf(
-            CommandExecutionWantsAutocompletionOptions::class,
-            $factory->make(CommandExecutionWantsAutocompletionOptions::TYPE, [])
+            ChatCommandExecutionWantsAutocompletionOptions::class,
+            $factory->make(ChatCommandExecutionWantsAutocompletionOptions::TYPE, [])
         );
     }
 }
