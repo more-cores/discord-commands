@@ -12,8 +12,8 @@ class UserCommand extends Command
         ?string $applicationId = null,
         string $name = '',
         string $description = '',
-        ?bool $dmPermission = null,
-        ?bool $defaultMemberPermissions = null,
+        ?bool $availableInDms = null,
+        array|int $defaultMemberPermissions = null,
         ?bool $version = null,
     ) {
         parent::__construct(
@@ -21,7 +21,7 @@ class UserCommand extends Command
             applicationId: $applicationId,
             name: $name,
             description: $description,
-            dmPermission: $dmPermission,
+            availableInDms: $availableInDms,
             defaultMemberPermissions: $defaultMemberPermissions,
             version: $version,
         );

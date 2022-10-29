@@ -71,7 +71,7 @@ class Option extends Jsonable
             'required' => $this->isRequired(),
         ];
 
-        $traitsUsed = class_uses($this);
+        $traitsUsed = array_merge(class_uses(self::class), class_uses($this));
         if (in_array(HasCommandOptions::class, $traitsUsed)) {
             if ($this->hasOptions()) {
                 $data['options'] = [];
@@ -83,13 +83,7 @@ class Option extends Jsonable
         }
 
         if (in_array(HasOptionChoices::class, $traitsUsed)) {
-            if ($this->hasChoices()) {
-                $data['choices'] = [];
-
-                foreach ($this->choices() as $choice) {
-                    $data['choices'][] = $choice->jsonSerialize();
-                }
-            }
+            $data['choices'] = $this->serializeChoices();
         }
 
         if (in_array(HasAutocomplete::class, $traitsUsed)) {
