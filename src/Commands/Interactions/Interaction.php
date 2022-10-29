@@ -113,16 +113,16 @@ class Interaction implements Hydrateable
             $this->id = $array['id'];
         }
 
-        if (isset($array['applicationId'])) {
-            $this->applicationId = $array['applicationId'];
+        if (isset($array['application_id'])) {
+            $this->applicationId = $array['application_id'];
         }
 
-        if (isset($array['guildId'])) {
-            $this->guildId = $array['guildId'];
+        if (isset($array['guild_id'])) {
+            $this->guildId = $array['guild_id'];
         }
 
-        if (isset($array['channelId'])) {
-            $this->channelId = $array['channelId'];
+        if (isset($array['channel_id'])) {
+            $this->channelId = $array['channel_id'];
         }
 
         if (isset($array['member'])) {
