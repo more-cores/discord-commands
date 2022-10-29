@@ -38,12 +38,12 @@ class ChatCommandExecutedTest extends TestCase
         $user = ['id' => 986534];
         $interaction->hydrate([
             'id' => $id,
-            'applicationId' => $appId,
+            'application_id' => $appId,
             'version' => $version,
             'token' => $token,
 
-            'guildId' => $guildId,
-            'channelId' => $channelId,
+            'guild_id' => $guildId,
+            'channel_id' => $channelId,
             'member' => $guildMember,
             'user' => $user,
         ]);
