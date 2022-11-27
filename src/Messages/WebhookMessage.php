@@ -114,10 +114,13 @@ class WebhookMessage extends Jsonable implements Hydrateable
     public function jsonSerialize(): array
     {
         $jsonData = [
-            'content' => $this->content(),
             'username' => $this->webhookUsername,
             'avatar_url' => $this->webhookAvatarUrl,
         ];
+
+        if ($this->hasContent()) {
+            $jsonData['content'] = $this->content;
+        }
 
         if (isset($this->threadName)) {
             $jsonData['thread_name'] = $this->threadName;
