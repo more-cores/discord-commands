@@ -102,6 +102,10 @@ class WebhookMessage extends Jsonable implements Hydrateable
             $this->setContent($array['content']);
         }
 
+        if (isset($array['thread_name'])) {
+            $this->createThreadWithName($array['thread_name']);
+        }
+
         // Component hydration is not currently supported - PR's welcome
 
         if (isset($array['embeds'])) {
