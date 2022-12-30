@@ -82,7 +82,7 @@ class Message extends Jsonable implements Hydrateable
         return str_contains($this->content, '<@&' . $roleId . '>');
     }
 
-    public function actionRow(Button ... $components)
+    public function actionRow(Button ... $buttons)
     {
         $this->addComponent(new ActionRow(func_get_args()));
     }
