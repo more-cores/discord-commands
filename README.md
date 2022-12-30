@@ -111,12 +111,14 @@ $embed->setFooter($thumbnail);
 
 ### Buttons
 
+Use dedicated classes for each button type.  Because buttons are non-interactive, you'll need to wrap them with an `ActionRow` when adding them to a message.  You can use the shorthand `actionRow()` to accomplish this.
+
 ```php
-$message->addComponent(new SuccessButton('button-id', 'Approve it'));
-$message->addComponent(new DangerButton('button-id', 'Reject it'));
-$message->addComponent(new PrimaryButton('button-id', 'Something else'));
-$message->addComponent(new SecondaryButton('button-id', 'Something else'));
-$message->addComponent(new LinkButton('https://mysite.com', 'My Site'));
+$message->actionRow(new SuccessButton('button-id', 'Approve it'));
+$message->actionRow(new DangerButton('button-id', 'Reject it'));
+$message->actionRow(new PrimaryButton('button-id', 'Something else'));
+$message->actionRow(new SecondaryButton('button-id', 'Something else'));
+$message->actionRow(new LinkButton('https://mysite.com', 'My Site'));
 ```
 
 ### SelectMenus
