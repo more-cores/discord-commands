@@ -5,7 +5,7 @@ Using this library you can build Discord bot commands, process inbound interacti
 # Installation
 
 ```
-composer require more-cores/discord-builder
+composer require more-cores/discord-commands
 ```
 
 # Creating Messages
@@ -179,7 +179,7 @@ $message->addComponent(new ParagraphInput($fieldId, 'Dating Profile'));
 To create a chat command, create a class like this:
 
 ```php
-class Subscribe extends ChatInputCommand
+class MyCommand extends ChatInputCommand
 {
     public const NAME = 'my-command';
 
@@ -197,6 +197,8 @@ class Subscribe extends ChatInputCommand
     }
 }
 ```
+
+You can then simply run `(new MyCommand())->jsonSerialize()` to generate the json payload needed to sync your command with Discord.
 
 # Handling Command Interactions
 
