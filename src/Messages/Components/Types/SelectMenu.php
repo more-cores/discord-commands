@@ -4,7 +4,7 @@ namespace DiscordBuilder\Messages\Components\Types;
 
 use DiscordBuilder\Messages\Components\Component;
 
-class SelectMenu extends Component
+abstract class SelectMenu extends Component
 {
     protected ?string $placeholder;
     protected ?int $minValues;

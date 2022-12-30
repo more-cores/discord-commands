@@ -4,7 +4,7 @@ namespace DiscordBuilder\Messages\Components\Types;
 
 use DiscordBuilder\Messages\Components\Component;
 
-class TextInput extends Component
+abstract class TextInput extends Component
 {
     public const TYPE = 4;
 

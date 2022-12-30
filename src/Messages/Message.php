@@ -6,6 +6,8 @@ use DiscordBuilder\Hydrateable;
 use DiscordBuilder\Jsonable;
 use DiscordBuilder\Messages\Components\Component;
 use DiscordBuilder\Messages\Components\HasComponents;
+use DiscordBuilder\Messages\Components\Types\ActionRow;
+use DiscordBuilder\Messages\Components\Types\Button;
 use DiscordBuilder\Messages\Embed\Embed;
 
 class Message extends Jsonable implements Hydrateable
@@ -80,6 +82,10 @@ class Message extends Jsonable implements Hydrateable
         return str_contains($this->content, '<@&' . $roleId . '>');
     }
 
+    public function actionRow(Button ... $buttons)
+    {
+        $this->addComponent(new ActionRow(func_get_args()));
+    }
 
     public function hydrate(array $array): self
     {

@@ -2,6 +2,7 @@
 
 namespace DiscordBuilder\Messages;
 
+use DiscordBuilder\Messages\Components\Types\ActionRow;
 use DiscordBuilder\Messages\Components\Types\Buttons\PrimaryButton;
 use DiscordBuilder\Messages\Embed\Embed;
 use PHPUnit\Framework\TestCase;
@@ -101,5 +102,24 @@ class MessageTest extends TestCase
         $json = $this->message->jsonSerialize();
         $this->assertArrayHasKey('components', $json);
         $this->assertEquals($compId, $json['components'][0]['custom_id']);
+    }
+
+    /** @test */
+    public function canAddComponentsAsActionRow()
+    {
+        $this->assertFalse($this->message->hasComponents());
+
+        $compId = '3j34jsdfl';
+        $component = new PrimaryButton($compId);
+        $this->message->actionRow($component);
+        $this->assertTrue($this->message->hasComponents());
+
+        $components = $this->message->components();
+        $this->assertInstanceOf(ActionRow::class, $components[0]);
+
+        $json = $this->message->jsonSerialize();
+
+        $this->assertArrayHasKey('components', $json);
+        $this->assertEquals($component->type(), $json['components'][0]['components'][0]['type']);
     }
 }
