@@ -10,7 +10,9 @@ class SelectMenuTest extends TestCase
     public function canBeConstructedAndJsonified()
     {
         $id = 'asdf';
-        $selectMenu = new SelectMenu(1, $id);
+        $selectMenu = new class(1, $id) extends SelectMenu {
+
+        };
 
         $this->assertEquals($id, $selectMenu->id());
 
