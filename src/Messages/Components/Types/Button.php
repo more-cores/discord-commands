@@ -5,7 +5,7 @@ namespace DiscordBuilder\Messages\Components\Types;
 use DiscordBuilder\Messages\Components\Component;
 use DiscordBuilder\PartialEmoji;
 
-class Button extends Component
+abstract class Button extends Component
 {
     public const TYPE = 2;
 
