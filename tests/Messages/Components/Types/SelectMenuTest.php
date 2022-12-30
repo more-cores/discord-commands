@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types;
+namespace DiscordCommands\Messages\Components\Types;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Types;
+namespace DiscordCommands\Commands\Types;
 
-use DiscordBuilder\Commands\Command;
+use DiscordCommands\Commands\Command;
 
 class UserCommand extends Command
 {

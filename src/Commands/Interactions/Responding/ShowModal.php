@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
-use DiscordBuilder\Jsonable;
-use DiscordBuilder\Messages\Components\Component;
-use DiscordBuilder\Messages\Components\HasComponents;
+use DiscordCommands\Jsonable;
+use DiscordCommands\Messages\Components\Component;
+use DiscordCommands\Messages\Components\HasComponents;
 
 class ShowModal extends Jsonable implements CommandResponse
 {

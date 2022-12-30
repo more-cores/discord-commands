@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options\Choices;
+namespace DiscordCommands\Commands\Options\Choices;
 
 class IntegerChoice extends Choice
 {

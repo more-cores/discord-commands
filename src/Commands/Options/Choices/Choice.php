@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options\Choices;
+namespace DiscordCommands\Commands\Options\Choices;
 
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Jsonable;
 
 abstract class Choice extends Jsonable
 {

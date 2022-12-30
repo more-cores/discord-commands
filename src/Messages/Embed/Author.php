@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Messages\Embed;
+namespace DiscordCommands\Messages\Embed;
 
-use DiscordBuilder\Hydrateable;
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Hydrateable;
+use DiscordCommands\Jsonable;
 
 class Author extends Jsonable implements Hydrateable
 {

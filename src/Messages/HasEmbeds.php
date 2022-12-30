@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages;
+namespace DiscordCommands\Messages;
 
-use DiscordBuilder\Messages\Embed\Embed;
+use DiscordCommands\Messages\Embed\Embed;
 
 trait HasEmbeds
 {

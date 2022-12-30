@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\SelectMenu;
+namespace DiscordCommands\Messages\Components\Types\SelectMenu;
 
 use PHPUnit\Framework\TestCase;
 

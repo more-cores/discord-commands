@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\SelectMenu;
+namespace DiscordCommands\Messages\Components\Types\SelectMenu;
 
-use DiscordBuilder\Channel;
+use DiscordCommands\Channel;
 use PHPUnit\Framework\TestCase;
 
 class ChannelSelectMenuTest extends TestCase

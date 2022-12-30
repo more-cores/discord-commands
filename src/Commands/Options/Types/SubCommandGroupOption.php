@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options\Types;
+namespace DiscordCommands\Commands\Options\Types;
 
-use DiscordBuilder\Commands\HasCommandOptions;
-use DiscordBuilder\Commands\Options\Option;
+use DiscordCommands\Commands\HasCommandOptions;
+use DiscordCommands\Commands\Options\Option;
 
 class SubCommandGroupOption extends Option
 {

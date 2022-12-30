@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\Buttons;
+namespace DiscordCommands\Messages\Components\Types\Buttons;
 
-use DiscordBuilder\Messages\Components\Types\Button;
+use DiscordCommands\Messages\Components\Types\Button;
 
 class LinkButton extends Button
 {

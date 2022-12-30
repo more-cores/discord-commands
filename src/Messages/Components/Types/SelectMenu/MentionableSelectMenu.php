@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\SelectMenu;
+namespace DiscordCommands\Messages\Components\Types\SelectMenu;
 
-use DiscordBuilder\Messages\Components\Types\SelectMenu;
+use DiscordCommands\Messages\Components\Types\SelectMenu;
 
 class MentionableSelectMenu extends SelectMenu
 {

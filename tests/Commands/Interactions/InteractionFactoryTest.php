@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions;
+namespace DiscordCommands\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\Types\ChatCommandExecuted;
-use DiscordBuilder\Commands\Interactions\Types\ChatCommandExecutionWantsAutocompletionOptions;
-use DiscordBuilder\Commands\Interactions\Types\Ping;
+use DiscordCommands\Commands\Interactions\Types\ChatCommandExecuted;
+use DiscordCommands\Commands\Interactions\Types\ChatCommandExecutionWantsAutocompletionOptions;
+use DiscordCommands\Commands\Interactions\Types\Ping;
 use PHPUnit\Framework\TestCase;
 
 class InteractionFactoryTest extends TestCase

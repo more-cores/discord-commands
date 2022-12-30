@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
 use PHPUnit\Framework\TestCase;
 

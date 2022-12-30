@@ -1,12 +1,12 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
-use DiscordBuilder\Jsonable;
-use DiscordBuilder\Messages\Components\Component;
-use DiscordBuilder\Messages\Components\HasComponents;
-use DiscordBuilder\Messages\Embed\Embed;
-use DiscordBuilder\Messages\HasEmbeds;
+use DiscordCommands\Jsonable;
+use DiscordCommands\Messages\Components\Component;
+use DiscordCommands\Messages\Components\HasComponents;
+use DiscordCommands\Messages\Embed\Embed;
+use DiscordCommands\Messages\HasEmbeds;
 
 class ReplyWithMessage extends Jsonable implements CommandResponse
 {

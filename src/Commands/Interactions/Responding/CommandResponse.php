@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
 interface CommandResponse extends \JsonSerializable
 {

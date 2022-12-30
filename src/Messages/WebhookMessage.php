@@ -1,12 +1,12 @@
 <?php
 
-namespace DiscordBuilder\Messages;
+namespace DiscordCommands\Messages;
 
-use DiscordBuilder\Hydrateable;
-use DiscordBuilder\Jsonable;
-use DiscordBuilder\Messages\Components\Component;
-use DiscordBuilder\Messages\Components\HasComponents;
-use DiscordBuilder\Messages\Embed\Embed;
+use DiscordCommands\Hydrateable;
+use DiscordCommands\Jsonable;
+use DiscordCommands\Messages\Components\Component;
+use DiscordCommands\Messages\Components\HasComponents;
+use DiscordCommands\Messages\Embed\Embed;
 
 class WebhookMessage extends Jsonable implements Hydrateable
 {

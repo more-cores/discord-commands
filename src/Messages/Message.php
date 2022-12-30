@@ -1,14 +1,14 @@
 <?php
 
-namespace DiscordBuilder\Messages;
+namespace DiscordCommands\Messages;
 
-use DiscordBuilder\Hydrateable;
-use DiscordBuilder\Jsonable;
-use DiscordBuilder\Messages\Components\Component;
-use DiscordBuilder\Messages\Components\HasComponents;
-use DiscordBuilder\Messages\Components\Types\ActionRow;
-use DiscordBuilder\Messages\Components\Types\Button;
-use DiscordBuilder\Messages\Embed\Embed;
+use DiscordCommands\Hydrateable;
+use DiscordCommands\Jsonable;
+use DiscordCommands\Messages\Components\Component;
+use DiscordCommands\Messages\Components\HasComponents;
+use DiscordCommands\Messages\Components\Types\ActionRow;
+use DiscordCommands\Messages\Components\Types\Button;
+use DiscordCommands\Messages\Embed\Embed;
 
 class Message extends Jsonable implements Hydrateable
 {

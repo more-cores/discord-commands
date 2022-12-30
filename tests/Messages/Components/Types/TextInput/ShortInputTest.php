@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\TextInput;
+namespace DiscordCommands\Messages\Components\Types\TextInput;
 
 use PHPUnit\Framework\TestCase;
 

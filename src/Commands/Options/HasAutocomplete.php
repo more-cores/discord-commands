@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
 trait HasAutocomplete
 {

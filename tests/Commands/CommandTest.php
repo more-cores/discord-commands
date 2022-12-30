@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands;
+namespace DiscordCommands\Commands;
 
-use DiscordBuilder\Commands\Options\Option;
-use DiscordBuilder\Permissions\Permission;
+use DiscordCommands\Commands\Options\Option;
+use DiscordCommands\Permissions\Permission;
 use PHPUnit\Framework\TestCase;
 
 class CommandTest extends TestCase

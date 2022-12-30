@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder;
+namespace DiscordCommands;
 
 interface PartialEmoji extends \JsonSerializable
 {

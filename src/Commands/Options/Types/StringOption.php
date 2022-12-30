@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options\Types;
+namespace DiscordCommands\Commands\Options\Types;
 
-use DiscordBuilder\Commands\Options\HasMinAndMaxLength;
-use DiscordBuilder\Commands\Options\HasOptionChoices;
-use DiscordBuilder\Commands\Options\Option;
+use DiscordCommands\Commands\Options\HasMinAndMaxLength;
+use DiscordCommands\Commands\Options\HasOptionChoices;
+use DiscordCommands\Commands\Options\Option;
 
 class StringOption extends Option
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components;
+namespace DiscordCommands\Messages\Components;
 
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Jsonable;
 
 class Component extends Jsonable
 {

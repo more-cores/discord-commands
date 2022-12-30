@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Permissions;
+namespace DiscordCommands\Permissions;
 
 /**
  * @link https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permission-type

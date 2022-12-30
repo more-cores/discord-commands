@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
-use DiscordBuilder\Commands\Options\Types\SubCommandGroupOption;
+use DiscordCommands\Commands\Options\Types\SubCommandGroupOption;
 use PHPUnit\Framework\TestCase;
 
 class SubCommandGroupTest extends TestCase

@@ -1,20 +1,20 @@
 {
-  "name": "more-cores/discord-builder",
+  "name": "more-cores/discord-commands",
   "type": "library",
   "license": "MIT",
-  "homepage": "https://github.com/more-cores/discord-builder",
+  "homepage": "https://github.com/more-cores/discord-commands",
   "authors": [
     {
-      "name": "Ben Kuhl",
+      "name": "Ben",
       "email": "ben@morecores.games"
     }
   ],
   "support": {
-    "issues": "https://github.com/more-cores/discord-builder/issues"
+    "issues": "https://github.com/more-cores/discord-commands/issues"
   },
   "autoload": {
     "psr-4": {
-      "DiscordBuilder\\": "src/"
+      "DiscordCommands\\": "src/"
     }
   },
   "require": {

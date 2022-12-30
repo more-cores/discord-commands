@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Commands;
+namespace DiscordCommands\Commands;
 
 trait UniquePerGuild
 {

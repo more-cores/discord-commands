@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Verification;
+namespace DiscordCommands\Verification;
 
 use Elliptic\EdDSA;
 use PHPUnit\Framework\TestCase;

@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Types;
+namespace DiscordCommands\Commands\Types;
 
-use DiscordBuilder\Commands\Command;
-use DiscordBuilder\Commands\HasCommandOptions;
+use DiscordCommands\Commands\Command;
+use DiscordCommands\Commands\HasCommandOptions;
 
 class ChatInputCommand extends Command
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Permissions;
+namespace DiscordCommands\Permissions;
 
 /**
  * @link https://discordapi.com/permissions.html

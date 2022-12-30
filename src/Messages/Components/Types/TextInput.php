@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types;
+namespace DiscordCommands\Messages\Components\Types;
 
-use DiscordBuilder\Messages\Components\Component;
+use DiscordCommands\Messages\Components\Component;
 
 abstract class TextInput extends Component
 {

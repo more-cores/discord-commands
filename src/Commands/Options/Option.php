@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
-use DiscordBuilder\Commands\HasCommandOptions;
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Commands\HasCommandOptions;
+use DiscordCommands\Jsonable;
 
 class Option extends Jsonable
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Types;
+namespace DiscordCommands\Commands\Interactions\Types;
 
-use DiscordBuilder\Commands\Interactions\Interaction;
+use DiscordCommands\Commands\Interactions\Interaction;
 
 class Ping extends Interaction
 {

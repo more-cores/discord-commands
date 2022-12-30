@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
-use DiscordBuilder\Commands\Options\Types\SubCommandOption;
+use DiscordCommands\Commands\Options\Types\SubCommandOption;
 use PHPUnit\Framework\TestCase;
 
 class SubCommandTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
-use DiscordBuilder\Messages\Components\Types\Buttons\PrimaryButton;
+use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
 use PHPUnit\Framework\TestCase;
 
 class ShowModalTest extends TestCase

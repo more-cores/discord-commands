@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options\Types;
+namespace DiscordCommands\Commands\Options\Types;
 
-use DiscordBuilder\Commands\Options\Option;
+use DiscordCommands\Commands\Options\Option;
 
 class RoleOption extends Option
 {

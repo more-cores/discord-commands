@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\Buttons;
+namespace DiscordCommands\Messages\Components\Types\Buttons;
 
 use PHPUnit\Framework\TestCase;
 

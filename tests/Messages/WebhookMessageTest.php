@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Messages;
+namespace DiscordCommands\Messages;
 
-use DiscordBuilder\Messages\Components\Types\Buttons\PrimaryButton;
-use DiscordBuilder\Messages\Embed\Embed;
+use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
+use DiscordCommands\Messages\Embed\Embed;
 use PHPUnit\Framework\TestCase;
 
 class WebhookMessageTest extends TestCase

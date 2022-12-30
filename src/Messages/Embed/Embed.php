@@ -1,11 +1,11 @@
 <?php
 
-namespace DiscordBuilder\Messages\Embed;
+namespace DiscordCommands\Messages\Embed;
 
 use DateTime;
 use DateTimeInterface;
-use DiscordBuilder\Hydrateable;
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Hydrateable;
+use DiscordCommands\Jsonable;
 
 class Embed extends Jsonable implements Hydrateable
 {

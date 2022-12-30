@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands;
+namespace DiscordCommands\Commands;
 
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Jsonable;
 
 class Command extends Jsonable
 {

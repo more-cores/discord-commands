@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands;
+namespace DiscordCommands\Commands;
 
-use DiscordBuilder\Commands\Options\Option;
+use DiscordCommands\Commands\Options\Option;
 
 trait HasCommandOptions
 {

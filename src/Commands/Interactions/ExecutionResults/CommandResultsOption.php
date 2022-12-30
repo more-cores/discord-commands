@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\ExecutionResults;
+namespace DiscordCommands\Commands\Interactions\ExecutionResults;
 
-use DiscordBuilder\Hydrateable;
+use DiscordCommands\Hydrateable;
 
 class CommandResultsOption implements Hydrateable
 {

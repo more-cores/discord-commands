@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Messages\Embed;
+namespace DiscordCommands\Messages\Embed;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types;
+namespace DiscordCommands\Messages\Components\Types;
 
-use DiscordBuilder\Messages\Components\Component;
-use DiscordBuilder\PartialEmoji;
+use DiscordCommands\Messages\Components\Component;
+use DiscordCommands\PartialEmoji;
 
 abstract class Button extends Component
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
-use DiscordBuilder\Commands\Options\Choices\Choice;
+use DiscordCommands\Commands\Options\Choices\Choice;
 
 trait HasOptionChoices
 {

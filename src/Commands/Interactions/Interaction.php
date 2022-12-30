@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions;
+namespace DiscordCommands\Commands\Interactions;
 
-use DiscordBuilder\Commands\Interactions\ExecutionResults\HasExecutionResults;
-use DiscordBuilder\Hydrateable;
+use DiscordCommands\Commands\Interactions\ExecutionResults\HasExecutionResults;
+use DiscordCommands\Hydrateable;
 
 class Interaction implements Hydrateable
 {

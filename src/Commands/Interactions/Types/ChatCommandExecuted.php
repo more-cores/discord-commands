@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Types;
+namespace DiscordCommands\Commands\Interactions\Types;
 
-use DiscordBuilder\Commands\Interactions\ExecutionResults\HasExecutionResults;
-use DiscordBuilder\Commands\Interactions\Interaction;
+use DiscordCommands\Commands\Interactions\ExecutionResults\HasExecutionResults;
+use DiscordCommands\Commands\Interactions\Interaction;
 
 class ChatCommandExecuted extends Interaction
 {

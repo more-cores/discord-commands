@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
-use DiscordBuilder\Commands\Options\Choices\Choice;
-use DiscordBuilder\Commands\Options\HasOptionChoices;
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Commands\Options\Choices\Choice;
+use DiscordCommands\Commands\Options\HasOptionChoices;
+use DiscordCommands\Jsonable;
 
 class ProvideAutocompleteOptions extends Jsonable implements CommandResponse
 {

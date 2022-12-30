@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Types;
+namespace DiscordCommands\Commands\Types;
 
-use DiscordBuilder\Commands\HasCommandOptions;
+use DiscordCommands\Commands\HasCommandOptions;
 use PHPUnit\Framework\TestCase;
 
 class ChatInputCommandTest extends TestCase

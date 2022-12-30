@@ -1,6 +1,6 @@
-# Discord Builder
+# Discord Commands
 
-A small library for building Discord messages and commands.
+Using this library you can build Discord bot commands, process inbound interactions from Discord and respond with messages.
 
 # Installation
 

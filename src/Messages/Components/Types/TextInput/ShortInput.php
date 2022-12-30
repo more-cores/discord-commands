@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\TextInput;
+namespace DiscordCommands\Messages\Components\Types\TextInput;
 
-use DiscordBuilder\Messages\Components\Types\TextInput;
+use DiscordCommands\Messages\Components\Types\TextInput;
 
 class ShortInput extends TextInput
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
-use DiscordBuilder\Commands\Options\Choices\BooleanChoice;
+use DiscordCommands\Commands\Options\Choices\BooleanChoice;
 use PHPUnit\Framework\TestCase;
 
 class ProvideAutocompleteOptionsTest extends TestCase

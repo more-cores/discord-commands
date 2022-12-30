@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components;
+namespace DiscordCommands\Messages\Components;
 
 trait HasComponents
 {

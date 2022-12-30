@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\Buttons;
+namespace DiscordCommands\Messages\Components\Types\Buttons;
 
-use DiscordBuilder\Messages\Components\Types\SelectMenu\Option;
+use DiscordCommands\Messages\Components\Types\SelectMenu\Option;
 use PHPUnit\Framework\TestCase;
 
 class OptionTest extends TestCase

@@ -1,10 +1,10 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding\Responses;
+namespace DiscordCommands\Commands\Interactions\Responding\Responses;
 
-use DiscordBuilder\Commands\Interactions\Responding\ReplyWithMessage;
-use DiscordBuilder\Messages\Components\Types\Buttons\PrimaryButton;
-use DiscordBuilder\Messages\Embed\Embed;
+use DiscordCommands\Commands\Interactions\Responding\ReplyWithMessage;
+use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
+use DiscordCommands\Messages\Embed\Embed;
 use PHPUnit\Framework\TestCase;
 
 class ReplyWithMessageTest extends TestCase

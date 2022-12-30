@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
-use DiscordBuilder\Commands\HasCommandOptions;
-use DiscordBuilder\Commands\Options\Choices\StringChoice;
+use DiscordCommands\Commands\HasCommandOptions;
+use DiscordCommands\Commands\Options\Choices\StringChoice;
 use PHPUnit\Framework\TestCase;
 
 class OptionTest extends TestCase

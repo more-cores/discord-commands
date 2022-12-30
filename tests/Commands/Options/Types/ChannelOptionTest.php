@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Commands\Options;
+namespace DiscordCommands\Commands\Options;
 
-use DiscordBuilder\Channel;
-use DiscordBuilder\Commands\Options\Types\ChannelOption;
+use DiscordCommands\Channel;
+use DiscordCommands\Commands\Options\Types\ChannelOption;
 use PHPUnit\Framework\TestCase;
 
 class ChannelOptionTest extends TestCase

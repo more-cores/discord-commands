@@ -1,9 +1,9 @@
 <?php
 
-namespace DiscordBuilder\Messages\Components\Types\Buttons;
+namespace DiscordCommands\Messages\Components\Types\Buttons;
 
-use DiscordBuilder\Messages\Components\Types\Button;
-use DiscordBuilder\PartialEmoji;
+use DiscordCommands\Messages\Components\Types\Button;
+use DiscordCommands\PartialEmoji;
 
 class SuccessButton extends Button
 {

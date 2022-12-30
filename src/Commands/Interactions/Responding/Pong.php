@@ -1,8 +1,8 @@
 <?php
 
-namespace DiscordBuilder\Commands\Interactions\Responding;
+namespace DiscordCommands\Commands\Interactions\Responding;
 
-use DiscordBuilder\Jsonable;
+use DiscordCommands\Jsonable;
 
 class Pong extends Jsonable implements CommandResponse
 {
