@@ -12,6 +12,7 @@ class WebhookMessage extends Jsonable implements Hydrateable
 {
     use HasComponents;
     use HasEmbeds;
+    use MentionsRoles;
 
     protected ?string $content;
     protected ?string $threadName;
@@ -52,38 +53,6 @@ class WebhookMessage extends Jsonable implements Hydrateable
     public function hasContent(): bool
     {
         return $this->content != null;
-    }
-
-    /**
-     * Determine if the given message has mentions
-     */
-    public function hasMentions(): bool
-    {
-        return preg_match('#<@&.+?>#', $this->content());
-    }
-
-    public function mentionedRoleIds(): array
-    {
-        preg_match_all('#<@&(.+?)>#', $this->content(), $matches);
-
-        return $matches[1] ?? [];
-    }
-
-    /**
-     * Mention the given role in the included message
-     */
-    public function mention(int $roleId): void
-    {
-        $this->content .= '<@&'.$roleId.'> ';
-    }
-
-    public function isMentioned(int $roleId): bool
-    {
-        if ($this->content == null) {
-            return false;
-        }
-
-        return str_contains($this->content, '<@&' . $roleId . '>');
     }
 
     public function createThreadWithName(string $threadName)

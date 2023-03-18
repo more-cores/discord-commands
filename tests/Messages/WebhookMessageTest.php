@@ -17,6 +17,29 @@ class WebhookMessageTest extends TestCase
         $this->message = new WebhookMessage();
     }
 
+    /**
+     * @test
+     * @dataProvider mentionableSpecialRoles
+     */
+    public function canMentionSpecialRoles(Mention $mention)
+    {
+        $this->assertFalse($this->message->isMentioned($mention));
+        $this->assertFalse($this->message->hasMentions());
+
+        $this->message->mention($mention);
+        $this->assertEquals($mention->value, $this->message->content());
+        $this->assertTrue($this->message->hasMentions());
+        $this->assertTrue($this->message->isMentioned($mention));
+    }
+
+    public static function mentionableSpecialRoles()
+    {
+        return [
+            [Mention::Here],
+            [Mention::Everyone],
+        ];
+    }
+
     /** @test */
     public function canMentionRoles()
     {
@@ -25,7 +48,7 @@ class WebhookMessageTest extends TestCase
 
         $roleId = time();
         $this->message->mention($roleId);
-        $this->assertEquals('<@&'.$roleId.'> ', $this->message->content());
+        $this->assertEquals('<@&'.$roleId.'>', $this->message->content());
         $this->assertTrue($this->message->hasMentions());
         $this->assertTrue($this->message->isMentioned($roleId));
     }
