@@ -8,6 +8,20 @@ use PHPUnit\Framework\TestCase;
 class ShowModalTest extends TestCase
 {
     /** @test */
+    public function usesCustomIdField()
+    {
+        $modalId = '123';
+        $response = new ShowModal(
+            id: $modalId,
+        );
+
+        $json = $response->jsonSerialize();
+
+        $this->assertArrayHasKey('custom_id', $json['data']);
+        $this->assertEquals($modalId, $json['data']['custom_id']);
+    }
+
+    /** @test */
     public function verifyUsesComponents()
     {
         $response = new ShowModal();
