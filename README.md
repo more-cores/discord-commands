@@ -2,6 +2,22 @@
 
 Using this library you can build Discord bot commands, process inbound interactions from Discord and respond with messages.
 
+# Table of contents
+
+- [Installation](#installation)
+- [Creating Messages](#creating-messages)
+    - [Author](#author)
+    - [Fields](#fields)
+    - [Image](#image)
+    - [Thumbnail](#thumbnail)
+    - [Footer](#footer)
+    - [Components](#components)
+- [Creating Commands](#creating-commands)
+    - [Chat commands](#chat-commands)
+- [Handling Command Interactions](#handling-command-interactions)
+    - [Request verification](#request-verification)
+    - [Responding to Interactions](#responding-to-interactions)
+
 # Installation
 
 ```
@@ -262,4 +278,34 @@ Then in your controller, make sure you respond to `Ping` with a `Pong`...
 
         // generate other responses based on the inbound interaction
     }
+```
+
+## Responding to Interactions
+
+You can respond to interactions by sending messages, showing modals, etc.  Make sure to give the [Discord docs](https://discord.com/developers/docs/interactions/receiving-and-responding) a read (e.g. your app has 3 seconds to respond to an interaction).
+
+### Modals
+
+To show a modal, you can simply respond to the http request with your modal object:
+
+```php
+public function userInteractedWithButton() {
+  $modal = new ShowModal(
+      id: 'something',
+      title: "Add new game/software for voting",
+  );
+  $modal->actionRow(
+      new ShortInput(
+          id: 'field-1',
+          label: 'My Field',
+      )
+  );
+  $modal->actionRow(
+      new ShortInput(
+          id: 'field-2',
+          label: 'My Field 2',
+      ),
+  );
+  return $modal->jsonSerialize();
+}
 ```
