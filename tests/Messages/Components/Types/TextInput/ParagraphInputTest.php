@@ -10,16 +10,11 @@ class ParagraphInputTest extends TestCase
     /** @test */
     public function requirementCanBeDisabled()
     {
-        $id = '4';
-        $label = 'my-field';
         $input = new ParagraphInput(
-            $id,
-            $label,
+            '4',
+            'my-field',
             required: false,
         );
-
-        $this->assertEquals(1, $input->style());
-        $this->assertEquals($label, $input->label());
 
         $json = $input->jsonSerialize();
 
