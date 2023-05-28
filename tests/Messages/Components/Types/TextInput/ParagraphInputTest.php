@@ -6,6 +6,27 @@ use PHPUnit\Framework\TestCase;
 
 class ParagraphInputTest extends TestCase
 {
+
+    /** @test */
+    public function requirementCanBeDisabled()
+    {
+        $id = '4';
+        $label = 'my-field';
+        $input = new ParagraphInput(
+            $id,
+            $label,
+            required: false,
+        );
+
+        $this->assertEquals(1, $input->style());
+        $this->assertEquals($label, $input->label());
+
+        $json = $input->jsonSerialize();
+
+        $this->assertArrayHasKey('required', $json);
+        $this->assertFalse($json['required']);
+    }
+
     /** @test */
     public function canBeConstructedAndJsonified()
     {
@@ -20,5 +41,8 @@ class ParagraphInputTest extends TestCase
 
         $this->assertArrayHasKey('label', $json);
         $this->assertEquals($input->label(), $json['label']);
+
+        $this->assertArrayHasKey('required', $json);
+        $this->assertEquals($input->isRequired(), $json['required']);
     }
 }
