@@ -10,6 +10,37 @@ use PHPUnit\Framework\TestCase;
 class SubmittedModalTest extends TestCase
 {
     /** @test */
+    public function determinesIfFieldHasValue()
+    {
+        $modal = new SubmittedModal();
+
+        $modalId = 'some-modal';
+        $someFieldId = 'some-field';
+        $someFieldValue = 'some-value';
+        $modal->hydrate([
+            'custom_id' => $modalId,
+            'components' => [
+                [
+                    'type' => ActionRow::TYPE,
+                    'components' => [
+                        [
+                            'custom_id' => $someFieldId,
+                            'type' =>  ShortInput::TYPE,
+                            'value' => $someFieldValue,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertFalse($modal->fieldHasValue('random-field'));
+
+        $this->assertTrue($modal->fieldHasValue($someFieldId));
+        $this->assertEquals($someFieldValue, $modal->fieldValue($someFieldId));
+    }
+
+
+    /** @test */
     public function hydrates()
     {
         $modal = new SubmittedModal();

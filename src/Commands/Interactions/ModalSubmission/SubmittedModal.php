@@ -14,7 +14,13 @@ class SubmittedModal implements Hydrateable
         return $this->id;
     }
 
-    public function fieldValue(string $field): string
+    public function fieldHasValue(string $field): bool
+    {
+        return isset($this->submittedData[$field]) &&
+            $this->submittedData[$field] !== null;
+    }
+
+    public function fieldValue(string $field): ?string
     {
         return $this->submittedData[$field];
     }
