@@ -14,6 +14,11 @@ class SubmittedModal implements Hydrateable
         return $this->id;
     }
 
+    public function fieldsInput(): array
+    {
+        return $this->submittedData;
+    }
+
     public function fieldHasValue(string $field): bool
     {
         return isset($this->submittedData[$field]) &&
@@ -23,6 +28,11 @@ class SubmittedModal implements Hydrateable
     public function fieldValue(string $field): ?string
     {
         return $this->submittedData[$field];
+    }
+
+    public function fieldValues(): array
+    {
+        return array_values($this->submittedData);
     }
 
     public function hydrate(array $array): self
