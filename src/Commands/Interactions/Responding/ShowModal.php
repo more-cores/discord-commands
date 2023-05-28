@@ -5,6 +5,7 @@ namespace DiscordCommands\Commands\Interactions\Responding;
 use DiscordCommands\Jsonable;
 use DiscordCommands\Messages\Components\Component;
 use DiscordCommands\Messages\Components\HasComponents;
+use DiscordCommands\Messages\Components\Types\ActionRow;
 
 class ShowModal extends Jsonable implements CommandResponse
 {
@@ -16,7 +17,7 @@ class ShowModal extends Jsonable implements CommandResponse
     protected ?string $title;
 
     /**
-     * @param Component[]|null $components
+     * @param ActionRow[]|null $components
      */
     public function __construct(
         ?string $id = null,
@@ -48,10 +49,15 @@ class ShowModal extends Jsonable implements CommandResponse
         return (string) $this->title;
     }
 
+    public function actionRow(Component ... $components)
+    {
+        $this->addComponent(new ActionRow(func_get_args()));
+    }
+
     public function jsonSerialize(): array
     {
         $jsonData = [
-            'id' => $this->id(),
+            'custom_id' => $this->id(),
             'title' => $this->title(),
         ];
 
