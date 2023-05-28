@@ -6,7 +6,7 @@ use DiscordCommands\Commands\Interactions\Interaction;
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecuted;
 use PHPUnit\Framework\TestCase;
 
-class ChatCommandExecutedTest extends TestCase
+class ModalSubmittedTest extends TestCase
 {
     /** @test */
     public function serializesInteractions()
