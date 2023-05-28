@@ -167,7 +167,10 @@ abstract class TextInput extends Component
             array_merge(
                 parent::jsonSerialize(),
                 $data,
-            )
+            ),
+            function ($value) {
+                return $value !== null;
+            }
         );
     }
 }
