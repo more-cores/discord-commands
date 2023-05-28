@@ -12,9 +12,7 @@ class ModalSubmittedTest extends TestCase
     public function serializesInteractions()
     {
         $interactionType = 12848;
-        $interaction = new Interaction($interactionType);
-
-        $this->assertEquals($interactionType, $interaction->type());
+        $interaction = new ModalSubmitted();
 
         $this->assertFalse($interaction->hasId());
         $this->assertFalse($interaction->hasApplicationId());
@@ -70,18 +68,18 @@ class ModalSubmittedTest extends TestCase
     /** @test */
     public function serializesData()
     {
-        $command = new ChatCommandExecuted();
+        $modal = new ModalSubmitted();
 
-        $this->assertFalse($command->hasData());
+        $this->assertFalse($modal->hasModal());
 
-        $command->hydrate([
+        $modal->hydrate([
             'data' => [
-                'name' => $name = 'asdf',
+                'custom_id' => $modalId = 'asdf',
             ]
         ]);
 
-        $this->assertTrue($command->hasData());
+        $this->assertTrue($modal->hasModal());
 
-        $this->assertEquals($name, $command->data()->commandName());
+        $this->assertEquals($modalId, $modal->modal()->id());
     }
 }
