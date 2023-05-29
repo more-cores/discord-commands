@@ -296,26 +296,74 @@ You can respond to interactions by sending messages, showing modals, etc.  Make 
 
 ### Modals
 
-To show a modal, you can simply respond to the http request with your modal object:
+To show a modal, you can simply respond to the interaction http request with your modal object:
+
+#### Showing the modal
 
 ```php
-public function userInteractedWithButton() {
-  $modal = new ShowModal(
-      id: 'something',
-      title: "Add new game/software for voting",
-  );
-  $modal->actionRow(
-      new ShortInput(
-          id: 'field-1',
-          label: 'My Field',
-      )
-  );
-  $modal->actionRow(
-      new ShortInput(
-          id: 'field-2',
-          label: 'My Field 2',
-      ),
-  );
-  return $modal->jsonSerialize();
+$modal = new ShowModal(
+    id: 'something',
+    title: "Add new game/software for voting",
+);
+$modal->actionRow(
+    new ShortInput(
+        id: 'field-1',
+        label: 'My Field',
+    )
+);
+$modal->actionRow(
+    new ShortInput(
+        id: 'field-2',
+        label: 'My Field 2',
+    ),
+);
+return $modal->jsonSerialize();
+```
+
+#### Processing modal feedback
+
+To process processing modal feedback, make sure you're handling `ModalSubmitted` events.
+
+In the below example, `$commandFactory` is not provided by this package, but relates to your domain.  You can customize that process however you'd like.
+
+```php
+public function interactions(
+    Request $request,
+    InteractionTypeFactory $interactionTypeFactory,
+    CommandFactory $commandFactory,
+) {
+    $interaction = $interactionTypeFactory->make($request->json('type'), $request->all());
+
+    if ($interaction instanceof Ping) {
+        return new Pong();
+    }
+
+    if ($interaction instanceof ModalSubmitted) {
+        $command = $commandFactory->makeByModal($interaction->modal()->id());
+        return $command->whenSubmitted($interaction, $interaction->modal());
+    }
+
+    throw new RuntimeException('Command interaction went unhandled');
 }
 ```
+
+In my case, I like for a single class to contain all the details about what happens on a Command.  So I added a `whenSubmitted` method that looks something like this:
+
+```php
+public function whenSubmitted(
+    ModalSubmitted $interaction,
+    SubmittedModal $modal,
+): CommandResponse {
+    Log::info('modal submitted', [
+        'modal' => $modal->id(),
+        'value' => $modal->fieldValue('field-2'),
+    ]);
+
+    return new ReplyWithMessage(
+        content: "You're all done!",
+        onlyVisibleToCommandIssuer: true,
+    );
+}
+```
+
+The key takeaway here is that Discord _requires_ an interaction in response to the modal submission.  So you'll need to respond with something.
