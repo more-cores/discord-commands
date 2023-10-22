@@ -17,16 +17,6 @@ enum Mention: string
         return '<@&' . $roleId . '>';
     }
 
-    public static function everyone(): string
-    {
-        return self::Everyone->value;
-    }
-
-    public static function here(): string
-    {
-        return self::Here->value;
-    }
-
     /**
      * @deprecated Use Mention::role() instead
      */
