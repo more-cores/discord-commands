@@ -2,6 +2,9 @@
 
 namespace DiscordCommands\Messages;
 
+/**
+ * @link https://discord.com/developers/docs/reference#message-formatting-timestamp-styles
+ */
 enum TimestampFormat: string
 {
     case RELATIVE = 'R';
