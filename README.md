@@ -7,6 +7,7 @@ Using this library you can build Discord bot commands, process inbound interacti
 - [Installation](#installation)
 - [Creating Messages](#creating-messages)
   - [Mentioning](#mentioning)
+  - [Enriching](#enriching)
   - [Author](#author)
   - [Fields](#fields)
   - [Image](#image)
@@ -72,6 +73,39 @@ $message->mention($roleId);
 
 $message->isMentioned($roleId);
 $message->hasMentions();
+```
+
+### Enriching
+
+Certain information can be enriched on the Discord side, such as linking to channels and timestamps in the user's local time.
+
+**Linking to a Channel**
+
+```php
+use \DiscordCommands\Messages\Message;
+
+$message->setContent('Instead of this channel, go to '.Message::linkChannel(34835835834));
+```
+
+**Linking to a Special Channel**
+
+```php
+use \DiscordCommands\Messages\Message;
+use \DiscordCommands\Messages\GuildNavigation;
+
+$message->setContent('Help find new channels in '.Message::linkInGuild(GuildNavigation::CHANNEL_BROWSER));
+```
+
+**Embedding Timestamps**
+
+```php
+use \DiscordCommands\Messages\Message;
+use \DiscordCommands\Messages\TimestampFormat;
+
+$message->setContent('The contest runs until '.Message::timestamp(time()+6000));
+
+// You can also customize formatting
+$message->setContent('The contest runs until '.Message::timestamp(time()+600, TimestampFormat::SHORT_TIME));
 ```
 
 ## Author

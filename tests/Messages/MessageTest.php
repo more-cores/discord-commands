@@ -128,21 +128,48 @@ class MessageTest extends TestCase
     }
 
     /** @test */
-    public function canAddComponentsAsActionRow()
+    public function linksToResources()
     {
-        $this->assertFalse($this->message->hasComponents());
+        $channelId = '48348';
+        $this->assertEquals(
+            '<#'.$channelId.'>',
+            Message::linkChannel($channelId)
+        );
 
-        $compId = '3j34jsdfl';
-        $component = new PrimaryButton($compId);
-        $this->message->actionRow($component);
-        $this->assertTrue($this->message->hasComponents());
+        $this->assertEquals(
+            '<id:'.GuildNavigation::CHANNEL_BROWSER->value.'>',
+            Message::linkInGuild(GuildNavigation::CHANNEL_BROWSER)
+        );
+    }
 
-        $components = $this->message->components();
-        $this->assertInstanceOf(ActionRow::class, $components[0]);
+    /** @test */
+    public function embedsCustomEmoji()
+    {
+        $emojiId = '123848342';
+        $this->assertEquals(
+            '<:smile:'.$emojiId.'>',
+            Message::customEmoji('smile', $emojiId)
+        );
 
-        $json = $this->message->jsonSerialize();
+        $emojiId = '123848342';
+        $this->assertEquals(
+            '<a:smile:'.$emojiId.'>',
+            Message::customEmoji('smile', $emojiId, true)
+        );
+    }
 
-        $this->assertArrayHasKey('components', $json);
-        $this->assertEquals($component->type(), $json['components'][0]['components'][0]['type']);
+    /** @test */
+    public function embedsTimestamps()
+    {
+        $timestamp = time();
+        $this->assertEquals(
+            '<t:' . $timestamp . '>',
+            Message::timestamp($timestamp)
+        );
+
+        $this->assertEquals(
+            '<t:' . $timestamp . ':' . TimestampFormat::RELATIVE->value . '>',
+            Message::timestamp($timestamp, TimestampFormat::RELATIVE)
+        );
     }
 }
