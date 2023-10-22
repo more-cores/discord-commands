@@ -69,9 +69,9 @@ Both `Message` and `WebhookMessage` offer the ability to mention roles.
 
 ```php
 // appends the mention to the previously set content.  Setting the content again overrides mentions
-$message->mention($roleId);
+$message->mentionRole($roleId);
 
-$message->isMentioned($roleId);
+$message->isRoleMentioned($roleId);
 $message->hasMentions();
 ```
 
