@@ -24,13 +24,13 @@ class MessageTest extends TestCase
      */
     public function canMentionSpecialRoles(Mention $mention)
     {
-        $this->assertFalse($this->message->isMentioned($mention));
+        $this->assertFalse($this->message->isRoleMentioned($mention));
         $this->assertFalse($this->message->hasMentions());
 
-        $this->message->mention($mention);
+        $this->message->mentionRole($mention);
         $this->assertEquals($mention->value, $this->message->content());
         $this->assertTrue($this->message->hasMentions());
-        $this->assertTrue($this->message->isMentioned($mention));
+        $this->assertTrue($this->message->isRoleMentioned($mention));
     }
 
     public static function mentionableSpecialRoles()
@@ -44,13 +44,13 @@ class MessageTest extends TestCase
     /** @test */
     public function canMentionRoles()
     {
-        $this->assertFalse($this->message->isMentioned(4132));
+        $this->assertFalse($this->message->isRoleMentioned(4132));
         $this->assertFalse($this->message->hasMentions());
 
         $roleId = time();
-        $this->message->mention($roleId);
+        $this->message->mentionRole($roleId);
         $this->assertTrue($this->message->hasMentions());
-        $this->assertTrue($this->message->isMentioned($roleId));
+        $this->assertTrue($this->message->isRoleMentioned($roleId));
     }
 
     /** @test */

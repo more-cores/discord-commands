@@ -21,27 +21,43 @@ trait MentionsRoles
 
     public function mentionHere()
     {
-        $this->mention(Mention::Here);
+        $this->mentionRole(Mention::Here);
     }
 
     public function mentionEveryone()
     {
-        $this->mention(Mention::Everyone);
+        $this->mentionRole(Mention::Everyone);
     }
 
     /**
      * Mention the given role in the included message
      */
-    public function mention(int|Mention $role): void
+    public function mentionRole(int|Mention $role): void
     {
         if ($role instanceof Mention) {
             $this->content .= $role->value;
         } else {
-            $this->content .= Mention::other($role);
+            $this->content .= Mention::role($role);
         }
     }
 
+    /**
+     * @deprecated Use mentionRole() instead
+     */
+    public function mention(int|Mention $role): void
+    {
+        $this->mentionRole($role);
+    }
+
+    /**
+     * @deprecated Use isRoleMentioned() instead
+     */
     public function isMentioned(int|Mention $role): bool
+    {
+        return $this->isRoleMentioned($role);
+    }
+
+    public function isRoleMentioned(int|Mention $role): bool
     {
         if ($this->content == null) {
             return false;
@@ -51,6 +67,6 @@ trait MentionsRoles
             return str_contains($this->content, $role->value);
         }
 
-        return str_contains($this->content, Mention::other($role));
+        return str_contains($this->content, Mention::role($role));
     }
 }
