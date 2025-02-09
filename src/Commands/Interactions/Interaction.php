@@ -19,7 +19,7 @@ class Interaction implements Hydrateable
     protected ?array $user = null;
 
     public function __construct(
-        protected int $type,
+        protected string|int $type,
     ) {}
 
     public function id(): string
@@ -102,7 +102,7 @@ class Interaction implements Hydrateable
         return $this->version !== null;
     }
 
-    public function type(): int
+    public function type(): string|int
     {
         return $this->type;
     }
