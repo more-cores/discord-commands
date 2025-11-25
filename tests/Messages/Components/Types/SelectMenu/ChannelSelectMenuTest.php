@@ -3,11 +3,12 @@
 namespace DiscordCommands\Messages\Components\Types\SelectMenu;
 
 use DiscordCommands\Channel;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ChannelSelectMenuTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function canAddChannelTypes()
     {
         $id = 'asdf';
@@ -30,7 +31,7 @@ class ChannelSelectMenuTest extends TestCase
         $this->assertTrue(in_array(Channel::TYPE_GUILD_TEXT, $json['channel_types']));
     }
 
-    /** @test */
+    #[Test]
     public function canNotSpecifyChannelTypes()
     {
         $id = 'asdf';

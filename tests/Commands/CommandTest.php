@@ -4,14 +4,14 @@ namespace DiscordCommands\Commands;
 
 use DiscordCommands\Commands\Options\Option;
 use DiscordCommands\Permissions\Permission;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CommandTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider requiredProperties
-     */
+    #[Test]
+    #[DataProvider('requiredProperties')]
     public function verifyRequiredProperties(array $data)
     {
         /*
@@ -55,10 +55,8 @@ class CommandTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider nullableProperties
-     */
+    #[Test]
+    #[DataProvider('nullableProperties')]
     public function verifyNullableProperties(array $data)
     {
         /*
@@ -123,7 +121,7 @@ class CommandTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function verifyIncludesJsonWhenUsingUniquePerGuild()
     {
         $command = new class(type: time()) extends Command {
@@ -142,7 +140,7 @@ class CommandTest extends TestCase
         $this->assertEquals($guildId, $json['guild_id']);
     }
 
-    /** @test */
+    #[Test]
     public function verifyIncludesJsonWhenHasOptions()
     {
         $command = new class(type: time()) extends Command {
@@ -163,7 +161,7 @@ class CommandTest extends TestCase
         $this->assertEquals($optionType, $json['options'][0]['type']);
     }
 
-    /** @test */
+    #[Test]
     public function acceptsArrayForMemberPermissions()
     {
         $command = new class(type: time()) extends Command {};

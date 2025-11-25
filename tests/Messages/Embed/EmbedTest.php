@@ -3,6 +3,7 @@
 namespace DiscordCommands\Messages\Embed;
 
 use DateTime;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class EmbedTest extends TestCase
@@ -17,7 +18,7 @@ class EmbedTest extends TestCase
         $this->embed = new Embed();
     }
 
-    /** @test */
+    #[Test]
     public function canProvideTitle()
     {
         $this->assertFalse($this->embed->hasTitle());
@@ -30,7 +31,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($title, $this->embed->jsonSerialize()['title']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideUrl()
     {
         $this->assertFalse($this->embed->hasUrl());
@@ -43,7 +44,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($url, $this->embed->jsonSerialize()['url']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideTimestamp()
     {
         $this->assertFalse($this->embed->hasTimestamp());
@@ -56,7 +57,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($timestamp->format(DateTime::ATOM), $this->embed->jsonSerialize()['timestamp']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideDescription()
     {
         $this->embed->setDescription($description = uniqid());
@@ -67,7 +68,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($description, $this->embed->jsonSerialize()['description']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideColor()
     {
         $this->assertFalse($this->embed->hasColor());
@@ -80,7 +81,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($color, $this->embed->jsonSerialize()['color']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetColorBasedOnRGB()
     {
         $this->embed->setColorRGB(62, 143, 64);
@@ -88,7 +89,7 @@ class EmbedTest extends TestCase
         $this->assertEquals(4099904, $this->embed->color());
     }
 
-    /** @test */
+    #[Test]
     public function canSetAuthorObject()
     {
         $author = new Author(
@@ -102,7 +103,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($name, $this->embed->jsonSerialize()['author']['name']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetAuthorByUrlAndDimensions()
     {
         $name = uniqid();
@@ -117,7 +118,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($iconUrl, $this->embed->author()->iconUrl());
     }
 
-    /** @test */
+    #[Test]
     public function canAddMultipleFields()
     {
         $this->assertFalse($this->embed->hasFields());
@@ -141,7 +142,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($secondName, $this->embed->jsonSerialize()['fields'][1]['name']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetFieldByNameValueAndInline()
     {
         $fieldName = uniqid();
@@ -154,7 +155,7 @@ class EmbedTest extends TestCase
         $this->assertTrue($this->embed->fields()[0]->isInline());
     }
 
-    /** @test */
+    #[Test]
     public function canSetImageUrl()
     {
         $this->assertFalse($this->embed->hasImage());
@@ -167,7 +168,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($imageUrl, $this->embed->jsonSerialize()['image']['url']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetThumbnailUrl()
     {
         $this->assertFalse($this->embed->hasThumbnail());
@@ -180,7 +181,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($imageUrl, $this->embed->jsonSerialize()['thumbnail']['url']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetFooterObject()
     {
         $footer = new Footer();
@@ -195,7 +196,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($text, $this->embed->jsonSerialize()['footer']['text']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetFooterByTextAndIconUrl()
     {
         $text = uniqid();
@@ -206,7 +207,7 @@ class EmbedTest extends TestCase
         $this->assertEquals($iconUrl, $this->embed->footer()->iconUrl());
     }
 
-    /** @test */
+    #[Test]
     public function convertsToAndFromArray()
     {
         $embed = new Embed();

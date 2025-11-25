@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Messages\Components\Types\SelectMenu;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class StringSelectMenuTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function canAddOptions()
     {
         $option1 = new class('label', 'value') extends Option {
@@ -31,7 +32,7 @@ class StringSelectMenuTest extends TestCase
         $this->assertEquals($option1->value(), $json['options'][0]['value']);
     }
 
-    /** @test */
+    #[Test]
     public function canMakeOptionDefault()
     {
         $option1 = new class('label', 'value') extends Option {

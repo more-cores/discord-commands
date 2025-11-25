@@ -4,11 +4,12 @@ namespace DiscordCommands\Commands\Options;
 
 use DiscordCommands\Channel;
 use DiscordCommands\Commands\Options\Types\ChannelOption;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ChannelOptionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializesOptions()
     {
         $channelType = Channel::TYPE_GUILD_VOICE;

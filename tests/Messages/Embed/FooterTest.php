@@ -2,6 +2,7 @@
 
 namespace DiscordCommands\Messages\Embed;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class FooterTest extends TestCase
@@ -15,7 +16,7 @@ class FooterTest extends TestCase
         $this->footer = new Footer();
     }
 
-    /** @test */
+    #[Test]
     public function canProvideUrl()
     {
         $this->footer->setIconUrl($iconUrl = uniqid());
@@ -26,7 +27,7 @@ class FooterTest extends TestCase
         $this->assertEquals($iconUrl, $this->footer->jsonSerialize()['icon_url']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideProxyIconUrl()
     {
         $this->footer->setProxyIconUrl($proxyIconUrl = uniqid());
@@ -37,7 +38,7 @@ class FooterTest extends TestCase
         $this->assertEquals($proxyIconUrl, $this->footer->jsonSerialize()['proxy_icon_url']);
     }
 
-    /** @test */
+    #[Test]
     public function convertsToAndFromArray()
     {
         $footer = new Footer();

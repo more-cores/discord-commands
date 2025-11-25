@@ -2,6 +2,7 @@
 
 namespace DiscordCommands\Messages\Embed;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class FieldTest extends TestCase
@@ -15,7 +16,7 @@ class FieldTest extends TestCase
         $this->field = new Field('', '');
     }
 
-    /** @test */
+    #[Test]
     public function canProvideName()
     {
         $this->assertEquals('', $this->field->name());
@@ -28,7 +29,7 @@ class FieldTest extends TestCase
         $this->assertEquals($name, $this->field->jsonSerialize()['name']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideValue()
     {
         $this->field->setValue($value = uniqid());
@@ -39,7 +40,7 @@ class FieldTest extends TestCase
         $this->assertEquals($value, $this->field->jsonSerialize()['value']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideInline()
     {
         $this->assertFalse($this->field->isInline());
@@ -52,7 +53,7 @@ class FieldTest extends TestCase
         $this->assertTrue($this->field->jsonSerialize()['inline']);
     }
 
-    /** @test */
+    #[Test]
     public function convertsToAndFromArray()
     {
         $field = new Field(

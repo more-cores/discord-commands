@@ -31,8 +31,8 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
         ?string $content = null,
         array $embeds = [],
         array $components = [],
-        bool $withoutExpandingEmbeds = null,
-        bool $onlyVisibleToCommandIssuer = null,
+        ?bool $withoutExpandingEmbeds = null,
+        ?bool $onlyVisibleToCommandIssuer = null,
     ) {
         $this->content = $content;
         $this->embeds = $embeds;

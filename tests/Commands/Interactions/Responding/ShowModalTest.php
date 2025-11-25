@@ -4,11 +4,12 @@ namespace DiscordCommands\Commands\Interactions\Responding;
 
 use DiscordCommands\Messages\Components\Types\ActionRow;
 use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ShowModalTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function usesCustomIdField()
     {
         $modalId = '123';
@@ -22,7 +23,7 @@ class ShowModalTest extends TestCase
         $this->assertEquals($modalId, $json['data']['custom_id']);
     }
 
-    /** @test */
+    #[Test]
     public function offersActionRowShorthand()
     {
         $modal = new ShowModal();
@@ -42,7 +43,7 @@ class ShowModalTest extends TestCase
         $modal->jsonSerialize();
     }
 
-    /** @test */
+    #[Test]
     public function verifyUsesComponents()
     {
         $response = new ShowModal();

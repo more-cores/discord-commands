@@ -124,7 +124,7 @@ class Embed extends Jsonable implements Hydrateable
         return $this->color != null;
     }
 
-    public function setAuthor($author, string $url = null, string $iconUrl = null): void
+    public function setAuthor($author, ?string $url = null, ?string $iconUrl = null): void
     {
         if ($author instanceof Author) {
             $this->author = $author;
@@ -154,7 +154,7 @@ class Embed extends Jsonable implements Hydrateable
         return $this->author != null;
     }
 
-    public function addField($field, string $value = null, bool $inline = null): void
+    public function addField($field, ?string $value = null, ?bool $inline = null): void
     {
         if ($field instanceof Field) {
             $this->fields[] = $field;
@@ -219,7 +219,7 @@ class Embed extends Jsonable implements Hydrateable
         return $this->thumbnailUrl != null;
     }
 
-    public function setFooter($text, string $iconUrl = null)
+    public function setFooter($text, ?string $iconUrl = null)
     {
         if ($text instanceof Footer) {
             $this->footer = $text;

@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Commands\Options\Choices;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class BooleanChoiceTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializesNameAndValue()
     {
         $name = 'my-name';

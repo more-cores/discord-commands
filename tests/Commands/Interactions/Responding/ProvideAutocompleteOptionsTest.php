@@ -3,11 +3,12 @@
 namespace DiscordCommands\Commands\Interactions\Responding;
 
 use DiscordCommands\Commands\Options\Choices\BooleanChoice;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ProvideAutocompleteOptionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function verifyUsesChoices()
     {
         $response = new ProvideAutocompleteOptions();

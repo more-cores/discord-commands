@@ -2,6 +2,7 @@
 
 namespace DiscordCommands\Messages\Embed;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class AuthorTest extends TestCase
@@ -15,7 +16,7 @@ class AuthorTest extends TestCase
         $this->author = new Author();
     }
 
-    /** @test */
+    #[Test]
     public function canProvideName()
     {
         $this->author->setName('');
@@ -29,7 +30,7 @@ class AuthorTest extends TestCase
         $this->assertEquals($name, $this->author->jsonSerialize()['name']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideUrl()
     {
         $this->author->setUrl($url = uniqid());
@@ -40,7 +41,7 @@ class AuthorTest extends TestCase
         $this->assertEquals($url, $this->author->jsonSerialize()['url']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideIconUrl()
     {
         $this->author->setIconUrl($iconUrl = uniqid());
@@ -51,7 +52,7 @@ class AuthorTest extends TestCase
         $this->assertEquals($iconUrl, $this->author->jsonSerialize()['icon_url']);
     }
 
-    /** @test */
+    #[Test]
     public function canProvideProxyIconUrl()
     {
         $this->author->setProxyIconUrl($proxyIconUrl = uniqid());
@@ -62,7 +63,7 @@ class AuthorTest extends TestCase
         $this->assertEquals($proxyIconUrl, $this->author->jsonSerialize()['proxy_icon_url']);
     }
 
-    /** @test */
+    #[Test]
     public function convertsToAndFromArray()
     {
         $author = new Author();

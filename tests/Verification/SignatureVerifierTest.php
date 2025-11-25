@@ -3,11 +3,12 @@
 namespace DiscordCommands\Verification;
 
 use Elliptic\EdDSA;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SignatureVerifierTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function testDefault()
     {
         $verifier = new SignatureVerifier();

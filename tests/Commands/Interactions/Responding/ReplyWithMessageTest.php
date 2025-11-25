@@ -5,11 +5,12 @@ namespace DiscordCommands\Commands\Interactions\Responding\Responses;
 use DiscordCommands\Commands\Interactions\Responding\ReplyWithMessage;
 use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
 use DiscordCommands\Messages\Embed\Embed;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ReplyWithMessageTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializes()
     {
         $response = new ReplyWithMessage(
@@ -23,7 +24,7 @@ class ReplyWithMessageTest extends TestCase
         $this->assertEquals($content, $json['data']['content']);
     }
 
-    /** @test */
+    #[Test]
     public function setsFlags()
     {
         $response = new ReplyWithMessage(
@@ -45,7 +46,7 @@ class ReplyWithMessageTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function serializesFlags()
     {
         $response = new ReplyWithMessage();
@@ -68,7 +69,7 @@ class ReplyWithMessageTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function verifyUsesComponents()
     {
         $response = new ReplyWithMessage();
@@ -90,7 +91,7 @@ class ReplyWithMessageTest extends TestCase
         $this->assertEquals($compId, $json['data']['components'][0]['custom_id']);
     }
 
-    /** @test */
+    #[Test]
     public function verifyUsesEmbeds()
     {
         $response = new ReplyWithMessage();

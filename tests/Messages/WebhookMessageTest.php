@@ -4,6 +4,8 @@ namespace DiscordCommands\Messages;
 
 use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
 use DiscordCommands\Messages\Embed\Embed;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class WebhookMessageTest extends TestCase
@@ -17,10 +19,8 @@ class WebhookMessageTest extends TestCase
         $this->message = new WebhookMessage();
     }
 
-    /**
-     * @test
-     * @dataProvider mentionableSpecialRoles
-     */
+    #[Test]
+    #[DataProvider('mentionableSpecialRoles')]
     public function canMentionSpecialRoles(Mention $mention)
     {
         $this->assertFalse($this->message->isMentioned($mention));
@@ -40,7 +40,7 @@ class WebhookMessageTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function canMentionRoles()
     {
         $this->assertFalse($this->message->isMentioned(4132));
@@ -53,7 +53,7 @@ class WebhookMessageTest extends TestCase
         $this->assertTrue($this->message->isMentioned($roleId));
     }
 
-    /** @test */
+    #[Test]
     public function canPullMentionedRoles()
     {
         $firstRoleId = time();
@@ -66,7 +66,7 @@ class WebhookMessageTest extends TestCase
         ], $this->message->mentionedRoleIds());
     }
 
-    /** @test */
+    #[Test]
     public function canProvideContent()
     {
         $this->assertFalse($this->message->hasContent());
@@ -79,7 +79,7 @@ class WebhookMessageTest extends TestCase
         $this->assertEquals($content, $this->message->jsonSerialize()['content']);
     }
 
-    /** @test */
+    #[Test]
     public function canAddMultipleEmbeds()
     {
         $this->assertCount(0, $this->message->embeds());
@@ -103,7 +103,7 @@ class WebhookMessageTest extends TestCase
         $this->assertEquals($secondEmbedName, $this->message->jsonSerialize()['embeds'][1]['title']);
     }
 
-    /** @test */
+    #[Test]
     public function canSetEmbeds()
     {
         $this->assertFalse($this->message->hasEmbeds());
@@ -117,7 +117,7 @@ class WebhookMessageTest extends TestCase
         $this->assertCount(1, $this->message->embeds());
     }
 
-    /** @test */
+    #[Test]
     public function canSetThreadName()
     {
         $threadName = '3j34jsdfl';
@@ -129,7 +129,7 @@ class WebhookMessageTest extends TestCase
         $this->assertEquals($threadName, $json['thread_name']);
     }
 
-    /** @test */
+    #[Test]
     public function canHydrateEmbeds()
     {
         $this->assertFalse($this->message->hasEmbeds());
@@ -147,7 +147,7 @@ class WebhookMessageTest extends TestCase
         $this->assertEquals($firstEmbedName, $this->message->jsonSerialize()['embeds'][0]['title']);
     }
 
-    /** @test */
+    #[Test]
     public function canAddComponents()
     {
         $this->assertFalse($this->message->hasComponents());
