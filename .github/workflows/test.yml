@@ -19,7 +19,7 @@ jobs:
           php_extensions: gmp
 
       - name: Run phpunit tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v2
         with:
           bootstrap: vendor/autoload.php
           php_version: "${{ matrix.php-version }}"
