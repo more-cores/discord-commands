@@ -49,4 +49,6 @@ class Permission
     public const SEND_MESSAGES_IN_THREADS   = 0x0000004000000000;
     public const USE_EMBEDDED_ACTIVITIES    = 0x0000008000000000;
     public const MODERATE_MEMBERS           = 0x0000010000000000;
+    public const PIN_MESSAGES               = 0x0008000000000000;
+    	
 }
