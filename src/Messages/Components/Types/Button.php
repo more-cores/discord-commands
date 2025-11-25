@@ -47,7 +47,7 @@ abstract class Button extends Component
         return $this->id;
     }
 
-    public function setId(string $id = null): void
+    public function setId(?string $id = null): void
     {
         $this->id = $id;
     }

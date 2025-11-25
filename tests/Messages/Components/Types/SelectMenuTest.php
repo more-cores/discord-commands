@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Messages\Components\Types;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SelectMenuTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function canBeConstructedAndJsonified()
     {
         $id = 'asdf';

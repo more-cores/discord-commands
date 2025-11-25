@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Commands\Interactions\ExecutionResults;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CommandResultsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function hydrates()
     {
         $results = new CommandResults();

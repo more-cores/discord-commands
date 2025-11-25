@@ -4,11 +4,12 @@ namespace DiscordCommands\Commands\Interactions\Types;
 
 use DiscordCommands\Commands\Interactions\Interaction;
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecuted;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ChatCommandExecutedTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializesInteractions()
     {
         $interactionType = 12848;
@@ -67,7 +68,7 @@ class ChatCommandExecutedTest extends TestCase
         $this->assertEquals($user['id'], $interaction->user()['id']);
     }
 
-    /** @test */
+    #[Test]
     public function serializesData()
     {
         $command = new ChatCommandExecuted();

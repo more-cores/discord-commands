@@ -5,11 +5,12 @@ namespace DiscordCommands\Commands\Interactions;
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecuted;
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecutionWantsAutocompletionOptions;
 use DiscordCommands\Commands\Interactions\Types\Ping;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class InteractionFactoryTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function makesTypes()
     {
         $factory = new InteractionTypeFactory();

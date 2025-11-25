@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Commands\Interactions\Responding;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class PongTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializes()
     {
         $pong = new Pong();

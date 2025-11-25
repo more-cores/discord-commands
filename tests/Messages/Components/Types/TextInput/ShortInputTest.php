@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Messages\Components\Types\TextInput;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ShortInputTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function requirementCanBeDisabled()
     {
         $input = new ShortInput(
@@ -21,7 +22,7 @@ class ShortInputTest extends TestCase
         $this->assertFalse($json['required']);
     }
 
-    /** @test */
+    #[Test]
     public function canBeConstructedAndJsonified()
     {
         $id = '4';

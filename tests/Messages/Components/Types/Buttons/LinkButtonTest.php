@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Messages\Components\Types\Buttons;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class LinkButtonTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function canBeConstructedAndJsonified()
     {
         $url = 'http://google.com';

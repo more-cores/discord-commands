@@ -3,11 +3,12 @@
 namespace DiscordCommands\Commands\Options;
 
 use DiscordCommands\Commands\Options\Types\SubCommandOption;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SubCommandTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializesOptions()
     {
         $optionType = time();

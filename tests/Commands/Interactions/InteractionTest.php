@@ -2,11 +2,12 @@
 
 namespace DiscordCommands\Commands\Interactions;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class InteractionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function serializesInteractions()
     {
         $interactionType = 12848;

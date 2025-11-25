@@ -127,7 +127,7 @@ class Message extends Jsonable implements Hydrateable
      */
     public static function timestamp(
         int $timestamp,
-        TimestampFormat $format = null
+        ?TimestampFormat $format = null
     ): string {
         if ($format !== null) {
             return '<t:' . $timestamp . ':' . $format->value . '>';

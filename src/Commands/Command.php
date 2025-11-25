@@ -21,7 +21,7 @@ class Command extends Jsonable
         string $name = '',
         string $description = '',
         ?bool $availableInDms = null,
-        array|int $defaultMemberPermissions = null,
+        array|int|null $defaultMemberPermissions = null,
         ?bool $version = null,
     ) {
         $this->description = $description;
@@ -77,7 +77,7 @@ class Command extends Jsonable
         return $this->defaultMemberPermissions;
     }
 
-    public function setDefaultMemberPermissions(array|int $defaultMemberPermissions = null): void
+    public function setDefaultMemberPermissions(array|int|null $defaultMemberPermissions = null): void
     {
         if (is_array($defaultMemberPermissions)) {
             $defaultMemberPermissions = array_sum($defaultMemberPermissions);

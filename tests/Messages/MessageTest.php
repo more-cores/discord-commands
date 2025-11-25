@@ -5,6 +5,8 @@ namespace DiscordCommands\Messages;
 use DiscordCommands\Messages\Components\Types\ActionRow;
 use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
 use DiscordCommands\Messages\Embed\Embed;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
@@ -18,10 +20,8 @@ class MessageTest extends TestCase
         $this->message = new Message();
     }
 
-    /**
-     * @test
-     * @dataProvider mentionableSpecialRoles
-     */
+    #[Test]
+    #[DataProvider('mentionableSpecialRoles')]
     public function canMentionSpecialRoles(Mention $mention)
     {
         $this->assertFalse($this->message->isRoleMentioned($mention));
@@ -41,7 +41,7 @@ class MessageTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function canMentionRoles()
     {
         $this->assertFalse($this->message->isRoleMentioned(4132));
@@ -53,7 +53,7 @@ class MessageTest extends TestCase
         $this->assertTrue($this->message->isRoleMentioned($roleId));
     }
 
-    /** @test */
+    #[Test]
     public function canPullMentionedRoles()
     {
         $firstRoleId = time();
@@ -66,7 +66,7 @@ class MessageTest extends TestCase
         ], $this->message->mentionedRoleIds());
     }
 
-    /** @test */
+    #[Test]
     public function canProvideContent()
     {
         $this->assertFalse($this->message->hasContent());
@@ -79,7 +79,7 @@ class MessageTest extends TestCase
         $this->assertEquals($content, $this->message->jsonSerialize()['content']);
     }
 
-    /** @test */
+    #[Test]
     public function canAddMultipleEmbeds()
     {
         $this->assertFalse($this->message->hasEmbeds());
@@ -93,7 +93,7 @@ class MessageTest extends TestCase
         $this->assertEquals($firstEmbedName, $this->message->jsonSerialize()['embeds'][0]['title']);
     }
 
-    /** @test */
+    #[Test]
     public function canHydrateEmbeds()
     {
         $this->assertFalse($this->message->hasEmbeds());
@@ -111,7 +111,7 @@ class MessageTest extends TestCase
         $this->assertEquals($firstEmbedName, $this->message->jsonSerialize()['embeds'][0]['title']);
     }
 
-    /** @test */
+    #[Test]
     public function canAddComponents()
     {
         $this->assertFalse($this->message->hasComponents());
@@ -127,7 +127,7 @@ class MessageTest extends TestCase
         $this->assertEquals($compId, $json['components'][0]['custom_id']);
     }
 
-    /** @test */
+    #[Test]
     public function linksToResources()
     {
         $channelId = '48348';
@@ -142,7 +142,7 @@ class MessageTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function embedsCustomEmoji()
     {
         $emojiId = '123848342';
@@ -158,7 +158,7 @@ class MessageTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function embedsTimestamps()
     {
         $timestamp = time();

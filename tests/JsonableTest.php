@@ -2,11 +2,12 @@
 
 namespace DiscordCommands;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class JsonableTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function canSerialize()
     {
         $jsonable = new JsonStub();

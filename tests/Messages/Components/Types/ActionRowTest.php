@@ -3,6 +3,7 @@
 namespace DiscordCommands\Messages\Components\Types;
 
 use DiscordCommands\Messages\Components\Component;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ActionRowTest extends TestCase
@@ -16,7 +17,7 @@ class ActionRowTest extends TestCase
         $this->actionRow = new ActionRow();
     }
 
-    /** @test */
+    #[Test]
     public function canAddAndProvideComponents()
     {
         $this->assertCount(0, $this->actionRow->components());

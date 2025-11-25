@@ -4,11 +4,12 @@ namespace DiscordCommands\Commands\Options;
 
 use DiscordCommands\Commands\HasCommandOptions;
 use DiscordCommands\Commands\Options\Choices\StringChoice;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class OptionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function verifySerializes()
     {
         $type = time();
@@ -20,7 +21,7 @@ class OptionTest extends TestCase
         $this->assertEquals($type, $json['type']);
     }
 
-    /** @test */
+    #[Test]
     public function serializesOptions()
     {
         $optionType = time();
@@ -41,7 +42,7 @@ class OptionTest extends TestCase
         $this->assertEquals($otherOptionType, $json['options'][0]['type']);
     }
 
-    /** @test */
+    #[Test]
     public function serializesChoices()
     {
         $otherOption = new StringChoice(
@@ -63,7 +64,7 @@ class OptionTest extends TestCase
         $this->assertEquals($value, $json['choices'][0]['value']);
     }
 
-    /** @test */
+    #[Test]
     public function serializesAutocomplete()
     {
         $option = new class(time()) extends Option {
@@ -80,7 +81,7 @@ class OptionTest extends TestCase
         $this->assertTrue($json['autocomplete']);
     }
 
-    /** @test */
+    #[Test]
     public function serializesMinAndMaxLength()
     {
         $minLength = 12;
@@ -105,7 +106,7 @@ class OptionTest extends TestCase
         $this->assertEquals($maxLength, $json['max_length']);
     }
 
-    /** @test */
+    #[Test]
     public function serializesMinAndMaxValues()
     {
         $minValue = 12;

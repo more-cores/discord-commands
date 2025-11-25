@@ -3,11 +3,12 @@
 namespace DiscordCommands\Messages\Components\Types\Buttons;
 
 use DiscordCommands\Messages\Components\Types\SelectMenu\Option;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class OptionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function canBeConstructedAndJsonified()
     {
         $label = 'asdf';

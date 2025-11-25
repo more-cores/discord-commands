@@ -2,15 +2,15 @@
 
 namespace DiscordCommands\Messages\Components\Types\Buttons;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class NonLinkButtonTest extends TestCase
 {
 
-    /**
-     * @test
-     * @dataProvider nonLinkButtonTypes
-     */
+    #[Test]
+    #[DataProvider('nonLinkButtonTypes')]
     public function canBeConstructedAndJsonified(string $buttonClass)
     {
         $id = 'asdf';

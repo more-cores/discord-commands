@@ -3,11 +3,12 @@
 namespace DiscordCommands\Commands\Types;
 
 use DiscordCommands\Commands\HasCommandOptions;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ChatInputCommandTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function usesExpectedTraits()
     {
         $command = new ChatInputCommand();

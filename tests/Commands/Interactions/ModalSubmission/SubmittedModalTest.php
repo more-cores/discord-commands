@@ -5,11 +5,12 @@ namespace Commands\Interactions\ModalSubmission;
 use DiscordCommands\Commands\Interactions\ModalSubmission\SubmittedModal;
 use DiscordCommands\Messages\Components\Types\ActionRow;
 use DiscordCommands\Messages\Components\Types\TextInput\ShortInput;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SubmittedModalTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function determinesIfFieldHasValue()
     {
         $modal = new SubmittedModal();
@@ -40,7 +41,7 @@ class SubmittedModalTest extends TestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function hydrates()
     {
         $modal = new SubmittedModal();
