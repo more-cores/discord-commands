@@ -11,7 +11,7 @@ jobs:
   test:
     strategy:
       matrix:
-        php-version: [ 8.1, 8.2 ]
+        php-version: [ 8.3, 8.4, 8.5 ]
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,7 @@ jobs:
       - name: Run phpunit tests
         uses: php-actions/phpunit@v3
         with:
+          version: composer
           bootstrap: vendor/autoload.php
           php_version: "${{ matrix.php-version }}"
           php_extensions: gmp
