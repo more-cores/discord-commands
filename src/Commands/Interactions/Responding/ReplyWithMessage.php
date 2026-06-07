@@ -3,6 +3,7 @@
 namespace DiscordCommands\Commands\Interactions\Responding;
 
 use DiscordCommands\Jsonable;
+use DiscordCommands\Messages\AllowedMentions;
 use DiscordCommands\Messages\Components\Component;
 use DiscordCommands\Messages\Components\HasComponents;
 use DiscordCommands\Messages\Embed\Embed;
@@ -14,6 +15,7 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
 
     public const FLAG_SUPPRESS_EMBEDS = 0x0000000000000004;
     public const FLAG_EPHEMERAL = 0x0000000000000040;
+    public const FLAG_SUPPRESS_NOTIFICATIONS = 0x0000000000001000;
 
     use HasComponents;
     use HasEmbeds;
@@ -21,6 +23,8 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
     protected ?string $content;
     protected array $embeds = [];
     protected array $flags = [];
+    protected bool $tts = false;
+    protected ?AllowedMentions $allowedMentions = null;
 
     /**
      * @param string|null $content
@@ -103,6 +107,39 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
         $this->flags[] = self::FLAG_EPHEMERAL;
     }
 
+    /**
+     * Send the reply without triggering a push/desktop notification.
+     */
+    public function sendSilently(): void
+    {
+        $this->flags[] = self::FLAG_SUPPRESS_NOTIFICATIONS;
+    }
+
+    public function asTextToSpeech(): void
+    {
+        $this->tts = true;
+    }
+
+    public function isTextToSpeech(): bool
+    {
+        return $this->tts;
+    }
+
+    public function setAllowedMentions(AllowedMentions $allowedMentions): void
+    {
+        $this->allowedMentions = $allowedMentions;
+    }
+
+    public function allowedMentions(): ?AllowedMentions
+    {
+        return $this->allowedMentions;
+    }
+
+    public function hasAllowedMentions(): bool
+    {
+        return $this->allowedMentions !== null;
+    }
+
     public function jsonSerialize(): array
     {
         $jsonData = [
@@ -111,6 +148,14 @@ class ReplyWithMessage extends Jsonable implements CommandResponse
 
         if (count($this->flags) > 0) {
             $jsonData['flags'] = array_sum($this->flags);
+        }
+
+        if ($this->isTextToSpeech()) {
+            $jsonData['tts'] = true;
+        }
+
+        if ($this->hasAllowedMentions()) {
+            $jsonData['allowed_mentions'] = $this->allowedMentions->jsonSerialize();
         }
 
         $traitsUsed = array_merge(class_uses(self::class), class_uses($this));

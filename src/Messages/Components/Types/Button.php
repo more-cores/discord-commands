@@ -12,6 +12,7 @@ abstract class Button extends Component
     protected ?string $label = null;
     protected ?string $id = null;
     protected ?string $url = null;
+    protected ?string $skuId = null;
     protected ?PartialEmoji $emoji = null;
     protected bool $disabled = false;
 
@@ -22,6 +23,7 @@ abstract class Button extends Component
         ?string $url = null,
         ?PartialEmoji $emoji = null,
         bool $disabled = false,
+        ?string $skuId = null,
     ) {
         parent::__construct(self::TYPE);
 
@@ -30,6 +32,7 @@ abstract class Button extends Component
         $this->url = $url;
         $this->emoji = $emoji;
         $this->disabled = $disabled;
+        $this->skuId = $skuId;
     }
 
     public function style(): int
@@ -87,6 +90,21 @@ abstract class Button extends Component
         return $this->url !== null;
     }
 
+    public function skuId(): string
+    {
+        return $this->skuId;
+    }
+
+    public function setSkuId(string $skuId): void
+    {
+        $this->skuId = $skuId;
+    }
+
+    public function hasSkuId(): bool
+    {
+        return $this->skuId !== null;
+    }
+
     public function isEnabled(): bool
     {
         return $this->disabled === false;
@@ -118,6 +136,10 @@ abstract class Button extends Component
 
         if ($this->hasId()) {
             $data['custom_id'] = $this->id();
+        }
+
+        if ($this->hasSkuId()) {
+            $data['sku_id'] = $this->skuId();
         }
 
         if ($this->emoji instanceof PartialEmoji) {
