@@ -162,4 +162,45 @@ class WebhookMessageTest extends TestCase
         $this->assertArrayHasKey('components', $json);
         $this->assertEquals($compId, $json['components'][0]['custom_id']);
     }
+
+    #[Test]
+    public function canBeSentSilently()
+    {
+        $this->assertArrayNotHasKey('flags', $this->message->jsonSerialize());
+
+        $this->message->sendSilently();
+
+        $json = $this->message->jsonSerialize();
+        $this->assertArrayHasKey('flags', $json);
+        if (!(WebhookMessage::FLAG_SUPPRESS_NOTIFICATIONS & $json['flags'])) {
+            $this->assertTrue(false, 'suppress notifications bitwise operator not applied');
+        }
+    }
+
+    #[Test]
+    public function canBeTextToSpeech()
+    {
+        $this->assertFalse($this->message->isTextToSpeech());
+        $this->assertArrayNotHasKey('tts', $this->message->jsonSerialize());
+
+        $this->message->asTextToSpeech();
+
+        $this->assertTrue($this->message->jsonSerialize()['tts']);
+    }
+
+    #[Test]
+    public function canRestrictAllowedMentions()
+    {
+        $this->assertFalse($this->message->hasAllowedMentions());
+
+        $allowedMentions = new AllowedMentions();
+        $allowedMentions->allowRoles(['12345']);
+        $this->message->setAllowedMentions($allowedMentions);
+
+        $this->assertTrue($this->message->hasAllowedMentions());
+
+        $json = $this->message->jsonSerialize();
+        $this->assertArrayHasKey('allowed_mentions', $json);
+        $this->assertEquals(['roles' => ['12345']], $json['allowed_mentions']);
+    }
 }

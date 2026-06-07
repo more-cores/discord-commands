@@ -75,6 +75,38 @@ $message->isRoleMentioned($roleId);
 $message->hasMentions();
 ```
 
+#### Controlling who gets pinged
+
+Mention syntax placed in a message's content notifies by default.  Use an `AllowedMentions` object to restrict (or fully suppress) those notifications:
+
+```php
+use \DiscordCommands\Messages\AllowedMentions;
+
+// suppress every mention - nobody gets pinged
+$message->setAllowedMentions(AllowedMentions::none());
+
+// or only allow specific roles/users to ping
+$allowed = new AllowedMentions();
+$allowed->allowRoles([$roleId]);
+$allowed->allowUsers([$userId]);
+$message->setAllowedMentions($allowed);
+```
+
+### Delivery options
+
+```php
+// send without triggering a push/desktop notification (a "silent" message)
+$message->sendSilently();
+
+// read the message aloud with text-to-speech
+$message->asTextToSpeech();
+
+// don't expand links/embeds in the message
+$message->withoutExpandingEmbeds();
+```
+
+These are available on `Message`, `WebhookMessage`, and `ReplyWithMessage`.
+
 ### Enriching
 
 Certain information can be enriched on the Discord side, such as linking to channels and timestamps in the user's local time.
@@ -179,6 +211,7 @@ $message->actionRow(new DangerButton('button-id', 'Reject it'));
 $message->actionRow(new PrimaryButton('button-id', 'Something else'));
 $message->actionRow(new SecondaryButton('button-id', 'Something else'));
 $message->actionRow(new LinkButton('https://mysite.com', 'My Site'));
+$message->actionRow(new PremiumButton('sku-id')); // links to a purchasable SKU
 ```
 
 ### SelectMenus
@@ -223,6 +256,19 @@ $message->addComponent(new ChannelSelectMenu($menuId, [
         Channel::TYPE_GUILD_VOICE,
     ],
 ]));
+```
+
+The auto-populated select menus (user, role, mentionable, and channel) can be pre-populated with default selections:
+
+```php
+$menu = new UserSelectMenu($menuId);
+$menu->addDefaultUser($userId);
+
+$menu = new RoleSelectMenu($menuId);
+$menu->addDefaultRole($roleId);
+
+$menu = new ChannelSelectMenu($menuId);
+$menu->addDefaultChannel($channelId);
 ```
 
 ### Text Input

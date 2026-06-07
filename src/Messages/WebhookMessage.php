@@ -14,10 +14,16 @@ class WebhookMessage extends Jsonable implements Hydrateable
     use HasEmbeds;
     use MentionsRoles;
 
+    public const FLAG_SUPPRESS_EMBEDS = 0x0000000000000004;
+    public const FLAG_SUPPRESS_NOTIFICATIONS = 0x0000000000001000;
+
     protected ?string $content;
     protected ?string $threadName;
     protected ?string $webhookUsername;
     protected ?string $webhookAvatarUrl;
+    protected array $flags = [];
+    protected bool $tts = false;
+    protected ?AllowedMentions $allowedMentions = null;
 
     /**
      * @param string|null $content
@@ -65,6 +71,44 @@ class WebhookMessage extends Jsonable implements Hydrateable
         return $this->threadName;
     }
 
+    /**
+     * Send the message without triggering a push/desktop notification.
+     */
+    public function sendSilently(): void
+    {
+        $this->flags[] = self::FLAG_SUPPRESS_NOTIFICATIONS;
+    }
+
+    public function withoutExpandingEmbeds(): void
+    {
+        $this->flags[] = self::FLAG_SUPPRESS_EMBEDS;
+    }
+
+    public function asTextToSpeech(): void
+    {
+        $this->tts = true;
+    }
+
+    public function isTextToSpeech(): bool
+    {
+        return $this->tts;
+    }
+
+    public function setAllowedMentions(AllowedMentions $allowedMentions): void
+    {
+        $this->allowedMentions = $allowedMentions;
+    }
+
+    public function allowedMentions(): ?AllowedMentions
+    {
+        return $this->allowedMentions;
+    }
+
+    public function hasAllowedMentions(): bool
+    {
+        return $this->allowedMentions !== null;
+    }
+
     public function hydrate(array $array): self
     {
         if (isset($array['content'])) {
@@ -97,6 +141,18 @@ class WebhookMessage extends Jsonable implements Hydrateable
 
         if (isset($this->threadName)) {
             $jsonData['thread_name'] = $this->threadName;
+        }
+
+        if (count($this->flags) > 0) {
+            $jsonData['flags'] = array_sum($this->flags);
+        }
+
+        if ($this->isTextToSpeech()) {
+            $jsonData['tts'] = true;
+        }
+
+        if ($this->hasAllowedMentions()) {
+            $jsonData['allowed_mentions'] = $this->allowedMentions->jsonSerialize();
         }
 
         $traitsUsed = array_merge(class_uses(self::class), class_uses($this));

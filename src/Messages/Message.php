@@ -19,7 +19,13 @@ class Message extends Jsonable implements Hydrateable
     use HasEmbeds;
     use MentionsRoles;
 
+    public const FLAG_SUPPRESS_EMBEDS = 0x0000000000000004;
+    public const FLAG_SUPPRESS_NOTIFICATIONS = 0x0000000000001000;
+
     protected ?string $content;
+    protected array $flags = [];
+    protected bool $tts = false;
+    protected ?AllowedMentions $allowedMentions = null;
 
     /**
      * @param string|null $content
@@ -34,6 +40,44 @@ class Message extends Jsonable implements Hydrateable
         $this->content = $content;
         $this->embeds = $embeds;
         $this->components = $components;
+    }
+
+    /**
+     * Send the message without triggering a push/desktop notification.
+     */
+    public function sendSilently(): void
+    {
+        $this->flags[] = self::FLAG_SUPPRESS_NOTIFICATIONS;
+    }
+
+    public function withoutExpandingEmbeds(): void
+    {
+        $this->flags[] = self::FLAG_SUPPRESS_EMBEDS;
+    }
+
+    public function asTextToSpeech(): void
+    {
+        $this->tts = true;
+    }
+
+    public function isTextToSpeech(): bool
+    {
+        return $this->tts;
+    }
+
+    public function setAllowedMentions(AllowedMentions $allowedMentions): void
+    {
+        $this->allowedMentions = $allowedMentions;
+    }
+
+    public function allowedMentions(): ?AllowedMentions
+    {
+        return $this->allowedMentions;
+    }
+
+    public function hasAllowedMentions(): bool
+    {
+        return $this->allowedMentions !== null;
     }
 
     /**
@@ -79,6 +123,18 @@ class Message extends Jsonable implements Hydrateable
         $jsonData = [
             'content' => $this->content(),
         ];
+
+        if (count($this->flags) > 0) {
+            $jsonData['flags'] = array_sum($this->flags);
+        }
+
+        if ($this->isTextToSpeech()) {
+            $jsonData['tts'] = true;
+        }
+
+        if ($this->hasAllowedMentions()) {
+            $jsonData['allowed_mentions'] = $this->allowedMentions->jsonSerialize();
+        }
 
         $traitsUsed = array_merge(class_uses(self::class), class_uses($this));
         if (in_array(HasComponents::class, $traitsUsed)) {

@@ -3,6 +3,7 @@
 namespace DiscordCommands\Commands\Interactions\Responding\Responses;
 
 use DiscordCommands\Commands\Interactions\Responding\ReplyWithMessage;
+use DiscordCommands\Messages\AllowedMentions;
 use DiscordCommands\Messages\Components\Types\Buttons\PrimaryButton;
 use DiscordCommands\Messages\Embed\Embed;
 use PHPUnit\Framework\Attributes\Test;
@@ -67,6 +68,49 @@ class ReplyWithMessageTest extends TestCase
         if (!(ReplyWithMessage::FLAG_EPHEMERAL & $json['data']['flags'])) {
             $this->assertTrue(false, 'ephemeral bitwise operator not applied');
         }
+    }
+
+    #[Test]
+    public function canBeSentSilently()
+    {
+        $response = new ReplyWithMessage();
+        $response->sendSilently();
+
+        $json = $response->jsonSerialize();
+
+        $this->assertArrayHasKey('flags', $json['data']);
+        if (!(ReplyWithMessage::FLAG_SUPPRESS_NOTIFICATIONS & $json['data']['flags'])) {
+            $this->assertTrue(false, 'suppress notifications bitwise operator not applied');
+        }
+    }
+
+    #[Test]
+    public function canBeTextToSpeech()
+    {
+        $response = new ReplyWithMessage();
+
+        $this->assertFalse($response->isTextToSpeech());
+        $this->assertArrayNotHasKey('tts', $response->jsonSerialize()['data']);
+
+        $response->asTextToSpeech();
+
+        $this->assertTrue($response->jsonSerialize()['data']['tts']);
+    }
+
+    #[Test]
+    public function canRestrictAllowedMentions()
+    {
+        $response = new ReplyWithMessage();
+
+        $this->assertFalse($response->hasAllowedMentions());
+
+        $response->setAllowedMentions(AllowedMentions::none());
+
+        $this->assertTrue($response->hasAllowedMentions());
+
+        $json = $response->jsonSerialize();
+        $this->assertArrayHasKey('allowed_mentions', $json['data']);
+        $this->assertEquals(['parse' => []], $json['data']['allowed_mentions']);
     }
 
     #[Test]
