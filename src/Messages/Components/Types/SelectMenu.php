@@ -9,6 +9,7 @@ abstract class SelectMenu extends Component
     protected ?string $placeholder;
     protected ?int $minValues;
     protected ?int $maxValues;
+    protected array $defaultValues = [];
 
     public function __construct(
         protected int $type,
@@ -62,6 +63,46 @@ abstract class SelectMenu extends Component
         $this->maxValues = $maxValues;
     }
 
+    /**
+     * Pre-selected values for auto-populated select menus (user, role,
+     * mentionable, and channel menus).  Each entry is an array of
+     * ['id' => ..., 'type' => 'user'|'role'|'channel'].
+     *
+     * @return array[]
+     */
+    public function defaultValues(): array
+    {
+        return $this->defaultValues;
+    }
+
+    public function hasDefaultValues(): bool
+    {
+        return count($this->defaultValues) > 0;
+    }
+
+    public function addDefaultValue(string $id, string $type): void
+    {
+        $this->defaultValues[] = [
+            'id' => $id,
+            'type' => $type,
+        ];
+    }
+
+    public function addDefaultUser(string $userId): void
+    {
+        $this->addDefaultValue($userId, 'user');
+    }
+
+    public function addDefaultRole(string $roleId): void
+    {
+        $this->addDefaultValue($roleId, 'role');
+    }
+
+    public function addDefaultChannel(string $channelId): void
+    {
+        $this->addDefaultValue($channelId, 'channel');
+    }
+
     public function isEnabled(): bool
     {
         return $this->disabled === false;
@@ -85,6 +126,10 @@ abstract class SelectMenu extends Component
             'min_values' => $this->minValues(),
             'max_values' => $this->maxValues(),
         ];
+
+        if ($this->hasDefaultValues()) {
+            $data['default_values'] = $this->defaultValues();
+        }
 
         $data = array_filter(
             array_merge(

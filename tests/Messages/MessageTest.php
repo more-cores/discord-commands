@@ -172,4 +172,63 @@ class MessageTest extends TestCase
             Message::timestamp($timestamp, TimestampFormat::RELATIVE)
         );
     }
+
+    #[Test]
+    public function hasNoFlagsByDefault()
+    {
+        $this->assertArrayNotHasKey('flags', $this->message->jsonSerialize());
+    }
+
+    #[Test]
+    public function canBeSentSilently()
+    {
+        $this->message->sendSilently();
+
+        $json = $this->message->jsonSerialize();
+
+        $this->assertArrayHasKey('flags', $json);
+        if (!(Message::FLAG_SUPPRESS_NOTIFICATIONS & $json['flags'])) {
+            $this->assertTrue(false, 'suppress notifications bitwise operator not applied');
+        }
+    }
+
+    #[Test]
+    public function canSuppressEmbeds()
+    {
+        $this->message->withoutExpandingEmbeds();
+
+        $json = $this->message->jsonSerialize();
+
+        $this->assertArrayHasKey('flags', $json);
+        if (!(Message::FLAG_SUPPRESS_EMBEDS & $json['flags'])) {
+            $this->assertTrue(false, 'suppress embeds bitwise operator not applied');
+        }
+    }
+
+    #[Test]
+    public function canBeTextToSpeech()
+    {
+        $this->assertFalse($this->message->isTextToSpeech());
+        $this->assertArrayNotHasKey('tts', $this->message->jsonSerialize());
+
+        $this->message->asTextToSpeech();
+
+        $this->assertTrue($this->message->isTextToSpeech());
+        $this->assertTrue($this->message->jsonSerialize()['tts']);
+    }
+
+    #[Test]
+    public function canRestrictAllowedMentions()
+    {
+        $this->assertFalse($this->message->hasAllowedMentions());
+        $this->assertArrayNotHasKey('allowed_mentions', $this->message->jsonSerialize());
+
+        $this->message->setAllowedMentions(AllowedMentions::none());
+
+        $this->assertTrue($this->message->hasAllowedMentions());
+
+        $json = $this->message->jsonSerialize();
+        $this->assertArrayHasKey('allowed_mentions', $json);
+        $this->assertEquals(['parse' => []], $json['allowed_mentions']);
+    }
 }

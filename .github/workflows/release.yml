@@ -11,25 +11,23 @@ jobs:
   test:
     strategy:
       matrix:
-        php-version: [ 8.1, 8.2 ]
+        php-version: [ 8.3, 8.4, 8.5 ]
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ matrix.php-version }}"
+          extensions: gmp
 
       - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: "${{ matrix.php-version }}"
-          php_extensions: gmp
+        run: composer install --prefer-dist --no-progress
 
       - name: Run phpunit tests
-        uses: php-actions/phpunit@v3
-        with:
-          bootstrap: vendor/autoload.php
-          php_version: "${{ matrix.php-version }}"
-          php_extensions: gmp
-          configuration: phpunit.xml
+        run: vendor/bin/phpunit --configuration phpunit.xml
 
   create-release:
     runs-on: ubuntu-latest
