@@ -4,6 +4,8 @@ namespace DiscordCommands\Commands\Interactions;
 
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecuted;
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecutionWantsAutocompletionOptions;
+use DiscordCommands\Commands\Interactions\Types\ComponentInteracted;
+use DiscordCommands\Commands\Interactions\Types\ModalSubmitted;
 use DiscordCommands\Commands\Interactions\Types\Ping;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -28,6 +30,16 @@ class InteractionFactoryTest extends TestCase
         $this->assertInstanceOf(
             ChatCommandExecutionWantsAutocompletionOptions::class,
             $factory->make(ChatCommandExecutionWantsAutocompletionOptions::TYPE, [])
+        );
+
+        $this->assertInstanceOf(
+            ComponentInteracted::class,
+            $factory->make(ComponentInteracted::TYPE, [])
+        );
+
+        $this->assertInstanceOf(
+            ModalSubmitted::class,
+            $factory->make(ModalSubmitted::TYPE, [])
         );
     }
 }
