@@ -447,3 +447,42 @@ public function whenSubmitted(
 ```
 
 The key takeaway here is that Discord _requires_ an interaction in response to the modal submission.  So you'll need to respond with something.
+
+### Component Interactions
+
+When a user clicks a button or makes a selection in a select menu, Discord sends a `ComponentInteracted` interaction.  You can identify which component was used via its `custom_id`, and read any selected values.
+
+```php
+if ($interaction instanceof ComponentInteracted) {
+    $interaction->customId();    // the custom_id of the button/menu that was used
+    $interaction->isButton();    // true for buttons
+    $interaction->isSelectMenu();// true for any select menu
+    $interaction->values();      // the selected values (empty for buttons)
+    $interaction->message();     // the original message the component is attached to
+
+    // respond with one of the responses below
+}
+```
+
+#### Updating the original message
+
+Instead of sending a new message, you can edit the message the component is attached to (for example, to disable a button after it's clicked) by responding with an `UpdateMessage`:
+
+```php
+return new UpdateMessage(
+    content: 'Thanks, recorded your vote!',
+    components: [], // pass an empty array to remove the components
+);
+```
+
+#### Deferring a response
+
+Discord requires a response within 3 seconds.  If you need longer, acknowledge the interaction first and follow up later:
+
+```php
+// for a command interaction - shows a loading state, then you edit the reply later
+return new DeferReply(onlyVisibleToCommandIssuer: true);
+
+// for a component interaction - acknowledges without showing anything, then you edit the message later
+return new DeferUpdate();
+```

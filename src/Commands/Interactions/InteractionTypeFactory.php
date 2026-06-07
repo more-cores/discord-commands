@@ -4,6 +4,7 @@ namespace DiscordCommands\Commands\Interactions;
 
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecuted;
 use DiscordCommands\Commands\Interactions\Types\ChatCommandExecutionWantsAutocompletionOptions;
+use DiscordCommands\Commands\Interactions\Types\ComponentInteracted;
 use DiscordCommands\Commands\Interactions\Types\ModalSubmitted;
 use DiscordCommands\Commands\Interactions\Types\Ping;
 
@@ -14,6 +15,7 @@ class InteractionTypeFactory
         $interaction = match ($type) {
             Ping::TYPE                                              => new Ping(),
             ChatCommandExecuted::TYPE                               => new ChatCommandExecuted(),
+            ComponentInteracted::TYPE                               => new ComponentInteracted(),
             ChatCommandExecutionWantsAutocompletionOptions::TYPE    => new ChatCommandExecutionWantsAutocompletionOptions(),
             ModalSubmitted::TYPE                                    => new ModalSubmitted(),
         };
